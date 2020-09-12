@@ -1,1 +1,1 @@
-export PS1="\[\e[32m\]codespaces\[\e[m\]:\[\e[35m\]*live demos are awesome*:\[\e[34m\]\w\[\e[m\]\\$ "
+export PS1="\[\e[32m\]Vineel\[\e[m\]:\[\e[35m\]:\[\e[34m\]\w\[\e[m\]\\$ "
