@@ -1,0 +1,13 @@
+[core]
+	editor = \"C:\\Users\\Vineel\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code\" --wait
+	autocrlf = true
+[commit]
+	gpgsign = true
+[user]
+	signingkey = 4431E64723B4ADDE
+	email = mail@vineelsai.com
+	name = Vineel Sai
+[tag]
+	gpgSign = true
+[gpg]
+	program = C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe
