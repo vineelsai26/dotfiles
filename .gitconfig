@@ -1,6 +1,7 @@
 [core]
-	editor = \"C:\\Users\\Vineel\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code\" --wait
-	autocrlf = true
+	editor = vim
+	autocrlf = false
+	eol = lf
 [commit]
 	gpgsign = true
 [user]
