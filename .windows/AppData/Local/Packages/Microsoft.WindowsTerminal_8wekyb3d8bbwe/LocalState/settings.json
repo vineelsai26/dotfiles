@@ -6,34 +6,26 @@
         {
             "command": 
             {
-                "action": "copy",
-                "singleLine": false
-            },
-            "keys": "ctrl+c"
-        },
-        {
-            "command": 
-            {
                 "action": "adjustFontSize",
                 "delta": -1.0
             },
             "keys": "ctrl+minus"
         },
         {
-            "command": "paste",
-            "keys": "ctrl+v"
+            "command": 
+            {
+                "action": "copy",
+                "singleLine": false
+            },
+            "keys": "ctrl+c"
         },
         {
             "command": "duplicateTab",
             "keys": "ctrl+d"
         },
         {
-            "command": 
-            {
-                "action": "newWindow",
-                "profile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}"
-            },
-            "keys": "ctrl+n"
+            "command": "paste",
+            "keys": "ctrl+v"
         },
         {
             "command": "find",
@@ -42,11 +34,10 @@
         {
             "command": 
             {
-                "action": "splitPane",
-                "split": "auto",
-                "splitMode": "duplicate"
+                "action": "newWindow",
+                "profile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}"
             },
-            "keys": "ctrl+shift+d"
+            "keys": "ctrl+n"
         },
         {
             "command": "unbound",
@@ -79,9 +70,11 @@
         {
             "command": 
             {
-                "action": "newTab"
+                "action": "splitPane",
+                "split": "auto",
+                "splitMode": "duplicate"
             },
-            "keys": "ctrl+t"
+            "keys": "ctrl+shift+d"
         },
         {
             "command": 
@@ -89,6 +82,13 @@
                 "action": "quakeMode"
             },
             "keys": "ctrl+alt+t"
+        },
+        {
+            "command": 
+            {
+                "action": "newTab"
+            },
+            "keys": "ctrl+t"
         },
         {
             "command": 
