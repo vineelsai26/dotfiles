@@ -16,3 +16,4 @@ source $HOME/.zsh/gpg.zsh
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+alias config='/usr/bin/git --git-dir=/home/vineel/.cfg/ --work-tree=/home/vineel'
