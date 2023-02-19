@@ -24,3 +24,7 @@ elif [[ $OS == *"Ubuntu"* ]]; then
 elif [[ $OS == *"Debian"* ]]; then
     alias up='sudo apt update && apt upgrade'
 fi
+
+# Using Git Bare repo for config management
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+

@@ -167,7 +167,7 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
-    cond = { false },
+    cond = { true },
     loaded = false,
     needs_bufread = false,
     only_cond = true,
