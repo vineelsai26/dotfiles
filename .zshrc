@@ -15,5 +15,12 @@ source $HOME/.zsh/gpg.zsh
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 
+# PATH
+export PATH="$HOME/.local/bin:$BUN_INSTALL/bin:$PATH"
+
+eval "$(fnm env --use-on-cd)"
+
+# fnm
+export PATH="/home/vineel/.local/share/fnm:$PATH"
+eval "`fnm env`"
