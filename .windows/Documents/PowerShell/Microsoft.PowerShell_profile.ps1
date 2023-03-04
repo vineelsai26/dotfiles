@@ -73,7 +73,6 @@ function admin {
 # with elevated rights. 
 Set-Alias -Name sudo -Value admin
 
-
 # Make it easy to edit this profile once it's installed
 function Edit-Profile {
     if ($host.Name -match "ise") {
@@ -145,3 +144,5 @@ function pgrep($name) {
 $ENV:STARSHIP_CONFIG = "$HOME\Documents\Starship\config.toml"
 $ENV:STARSHIP_DISTRO = "者 "
 Invoke-Expression (&starship init powershell)
+
+fnm env --use-on-cd | Out-String | Invoke-Expression

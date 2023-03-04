@@ -6,26 +6,26 @@
         {
             "command": 
             {
-                "action": "adjustFontSize",
-                "delta": -1.0
-            },
-            "keys": "ctrl+minus"
-        },
-        {
-            "command": 
-            {
                 "action": "copy",
                 "singleLine": false
             },
             "keys": "ctrl+c"
         },
         {
-            "command": "duplicateTab",
-            "keys": "ctrl+d"
+            "command": 
+            {
+                "action": "adjustFontSize",
+                "delta": -1.0
+            },
+            "keys": "ctrl+minus"
         },
         {
             "command": "paste",
             "keys": "ctrl+v"
+        },
+        {
+            "command": "duplicateTab",
+            "keys": "ctrl+d"
         },
         {
             "command": "find",
@@ -177,14 +177,6 @@
                 "tabTitle": "Fedora"
             },
             {
-                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
-                "hidden": false,
-                "icon": "D:\\GoogleDrive\\Pictures\\Logos\\ubuntu.png",
-                "name": "Ubuntu",
-                "source": "Windows.Terminal.Wsl",
-                "tabTitle": "Ubuntu"
-            },
-            {
                 "colorScheme": "Campbell",
                 "commandline": "ssh ubuntu@oc1.vineelsai.com",
                 "guid": "{a1c4a68a-bb3f-43d6-9546-977c0f7fa432}",
@@ -218,6 +210,12 @@
                 "icon": "ms-appx:///ProfileIcons/{0caa0dad-35be-5f56-a8ff-afceeeaa6101}.png",
                 "name": "Command Prompt",
                 "tabTitle": "Command Prompt"
+            },
+            {
+                "guid": "{ca035602-ea68-5786-9eac-8e8ded14ea5c}",
+                "hidden": false,
+                "name": "Arch1",
+                "source": "Windows.Terminal.Wsl"
             }
         ]
     },
