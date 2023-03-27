@@ -10,7 +10,6 @@ cd $HOME/.oh-my-zsh
 git submodule init
 git submodule update
 cd $current
-chsh -s /bin/zsh
 zsh
-unsetopt EXTENDED_HISTORY
 cat $HOME/.bash_history >> $HOME/.zsh_history
+chsh -s /bin/zsh
