@@ -12,4 +12,3 @@ git submodule update
 cd $current
 zsh
 cat $HOME/.bash_history >> $HOME/.zsh_history
-chsh -s /bin/zsh
