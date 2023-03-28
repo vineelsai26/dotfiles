@@ -12,3 +12,6 @@
 	gpgSign = true
 [gpg]
 	program = gpg
+[safe]
+	directory = /mnt/d/Work/mitlas/projects/mithoo
+	directory = /home/vineel/mitlas/projects/mithoo
