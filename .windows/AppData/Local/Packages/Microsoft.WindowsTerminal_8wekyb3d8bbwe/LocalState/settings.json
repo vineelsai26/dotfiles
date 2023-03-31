@@ -6,30 +6,26 @@
         {
             "command": 
             {
-                "action": "copy",
-                "singleLine": false
-            },
-            "keys": "ctrl+c"
-        },
-        {
-            "command": 
-            {
                 "action": "adjustFontSize",
                 "delta": -1.0
             },
             "keys": "ctrl+minus"
         },
         {
-            "command": "paste",
-            "keys": "ctrl+v"
+            "command": 
+            {
+                "action": "copy",
+                "singleLine": false
+            },
+            "keys": "ctrl+c"
         },
         {
             "command": "duplicateTab",
             "keys": "ctrl+d"
         },
         {
-            "command": "find",
-            "keys": "ctrl+f"
+            "command": "paste",
+            "keys": "ctrl+v"
         },
         {
             "command": 
@@ -38,6 +34,19 @@
                 "profile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}"
             },
             "keys": "ctrl+n"
+        },
+        {
+            "command": "find",
+            "keys": "ctrl+f"
+        },
+        {
+            "command": 
+            {
+                "action": "splitPane",
+                "split": "auto",
+                "splitMode": "duplicate"
+            },
+            "keys": "ctrl+shift+d"
         },
         {
             "command": "unbound",
@@ -70,11 +79,9 @@
         {
             "command": 
             {
-                "action": "splitPane",
-                "split": "auto",
-                "splitMode": "duplicate"
+                "action": "newTab"
             },
-            "keys": "ctrl+shift+d"
+            "keys": "ctrl+t"
         },
         {
             "command": 
@@ -82,13 +89,6 @@
                 "action": "quakeMode"
             },
             "keys": "ctrl+alt+t"
-        },
-        {
-            "command": 
-            {
-                "action": "newTab"
-            },
-            "keys": "ctrl+t"
         },
         {
             "command": 
@@ -139,7 +139,7 @@
             "cursorShape": "bar",
             "font": 
             {
-                "face": "JetBrainsMono Nerd Font",
+                "face": "JetBrainsMono NF",
                 "size": 14.0
             },
             "icon": "D:\\GoogleDrive\\Pictures\\Logos\\Terminal.png",
@@ -177,6 +177,30 @@
                 "tabTitle": "Fedora"
             },
             {
+                "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
+                "hidden": false,
+                "icon": "D:\\GoogleDrive\\Pictures\\Logos\\debian.png",
+                "name": "Debian",
+                "source": "Windows.Terminal.Wsl",
+                "tabTitle": "Debian"
+            },
+            {
+                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+                "hidden": false,
+                "icon": "D:\\GoogleDrive\\Pictures\\Logos\\ubuntu.png",
+                "name": "Ubuntu",
+                "source": "Windows.Terminal.Wsl",
+                "tabTitle": "Ubuntu"
+            },
+            {
+                "guid": "{46ca431a-3a87-5fb3-83cd-11ececc031d2}",
+                "hidden": false,
+                "icon": "D:\\GoogleDrive\\Pictures\\Logos\\kali-menu.png",
+                "name": "Kali Linux",
+                "source": "Windows.Terminal.Wsl",
+                "tabTitle": "Kali Linux"
+            },
+            {
                 "colorScheme": "Campbell",
                 "commandline": "ssh ubuntu@oc1.vineelsai.com",
                 "guid": "{a1c4a68a-bb3f-43d6-9546-977c0f7fa432}",
@@ -210,12 +234,6 @@
                 "icon": "ms-appx:///ProfileIcons/{0caa0dad-35be-5f56-a8ff-afceeeaa6101}.png",
                 "name": "Command Prompt",
                 "tabTitle": "Command Prompt"
-            },
-            {
-                "guid": "{ca035602-ea68-5786-9eac-8e8ded14ea5c}",
-                "hidden": false,
-                "name": "Arch1",
-                "source": "Windows.Terminal.Wsl"
             }
         ]
     },

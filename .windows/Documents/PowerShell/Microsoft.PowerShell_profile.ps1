@@ -145,4 +145,4 @@ $ENV:STARSHIP_CONFIG = "$HOME\Documents\Starship\config.toml"
 $ENV:STARSHIP_DISTRO = "者 "
 Invoke-Expression (&starship init powershell)
 
-fnm env --use-on-cd | Out-String | Invoke-Expression
+vmn env | Out-String | Invoke-Expression
