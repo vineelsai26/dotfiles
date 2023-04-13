@@ -1,0 +1,16 @@
+# Terminal History
+.zsh_history
+.bash_history
+.python_history
+
+# VSCode
+.vscode
+
+# Node
+.npm
+.yarnrc
+.vmn
+
+# SSH
+.ssh
+

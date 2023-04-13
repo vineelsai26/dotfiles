@@ -116,3 +116,6 @@ if ! shopt -oq posix; then
   fi
 fi
 alias config='/usr/bin/git --git-dir=/home/vineel/.cfg/ --work-tree=/home/vineel'
+
+#VMN 
+eval "`vmn env`"

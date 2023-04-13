@@ -5,13 +5,15 @@
 [commit]
 	gpgsign = true
 [user]
-	signingkey = 4431E64723B4ADDE
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII8d0IRfaJbv8QfOzyn105HtUajqBPfWv7dcV0WHBDEC
 	email = mail@vineelsai.com
 	name = Vineel Sai
 [tag]
 	gpgSign = true
 [gpg]
 	program = gpg
-[safe]
-	directory = /mnt/d/Work/mitlas/projects/mithoo
-	directory = /home/vineel/mitlas/projects/mithoo
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[push]
+	autoSetupRemote = true

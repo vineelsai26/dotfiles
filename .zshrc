@@ -16,6 +16,12 @@ source $HOME/.zsh/gpg.zsh
 # bun
 export BUN_INSTALL="$HOME/.bun"
 
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
 # PATH
 export PATH="$HOME/.local/bin:$BUN_INSTALL/bin:$PATH"
+export PATH="$(brew --prefix)/opt/python@3.11/libexec/bin:$PATH"
+export PATH="$HOME/Personal/VMN:$PATH"
 
+#VMN 
+eval "`vmn env`"
