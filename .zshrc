@@ -11,7 +11,7 @@ source $HOME/.zsh/nvm.zsh
 source $HOME/.zsh/gpg.zsh
 source $HOME/.zsh/path.zsh
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+test -e "${HOME}/.zsh/.iterm2_shell_integration.zsh" && source "${HOME}/.zsh/.iterm2_shell_integration.zsh"
 
 #VMN 
 eval "`vmn env`"

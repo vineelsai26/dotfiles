@@ -2,6 +2,8 @@
 .zsh_history
 .bash_history
 .python_history
+.zsh_sessions
+.zcompdump*
 
 # VSCode
 .vscode
@@ -13,4 +15,38 @@
 
 # SSH
 .ssh
+
+# Mac
+.DS_Store
+Applications
+Desktop
+Documents
+Downloads
+Google Drive
+Library
+Movies
+Music
+Personal
+Pictures
+Public
+Virtual Machines.localized
+Work
+go
+
+# Cache
+.cache
+.Trash
+.CFUserTextEncoding
+.terraform.d
+.viminfo
+.config/configstore
+
+# secreates
+.profile
+.docker
+.redhat
+.anydesk
+
+# Loop Back
+.cfg
 
