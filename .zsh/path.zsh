@@ -23,7 +23,7 @@ fi
 
 # VMN Directory
 if [ -d "$HOME/Personal/VMN" ]; then
-    export PATH="$HOME/Personal/VMN:$PATH"
+    export PATH="$HOME/.vmn:$PATH"
 fi
 
 # Python User Script Directory for MacOS

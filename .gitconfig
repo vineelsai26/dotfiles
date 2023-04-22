@@ -5,7 +5,7 @@
 [commit]
 	gpgsign = true
 [user]
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII8d0IRfaJbv8QfOzyn105HtUajqBPfWv7dcV0WHBDEC
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILFxoOyDEW620PrgX1atOr0N5+35im37nko3KcY+odPq
 	email = mail@vineelsai.com
 	name = Vineel Sai
 [tag]

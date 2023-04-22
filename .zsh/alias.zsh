@@ -28,3 +28,6 @@ fi
 # Using Git Bare repo for config management
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
+# SSH
+alias s145="ssh vineel@10.0.0.145"
+
