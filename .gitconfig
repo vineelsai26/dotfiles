@@ -13,7 +13,7 @@
 [gpg]
 	format = ssh
 [gpg "ssh"]
-	program = C:\\Users\\Vineel\\AppData\\Local\\1Password\\app\\8\\op-ssh-sign.exe
+	program = "C:\\Users\\Vineel\\AppData\\Local\\1Password\\app\\8\\op-ssh-sign.exe"
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
