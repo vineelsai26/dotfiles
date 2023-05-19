@@ -22,7 +22,7 @@ if test -e "brew"; then
 fi
 
 # VMN Directory
-if [ -d "$HOME/Personal/VMN" ]; then
+if [ -d "$HOME/.vmn" ]; then
     export PATH="$HOME/.vmn:$PATH"
 fi
 

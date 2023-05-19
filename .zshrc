@@ -6,10 +6,10 @@ plugins=(zsh-autosuggestions zsh-completions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
-source $HOME/.zsh/alias.zsh
-source $HOME/.zsh/nvm.zsh
-source $HOME/.zsh/gpg.zsh
-source $HOME/.zsh/path.zsh
+source "$HOME/.zsh/alias.zsh"
+source "$HOME/.zsh/nvm.zsh"
+source "$HOME/.zsh/gpg.zsh"
+source "$HOME/.zsh/path.zsh"
 
 test -e "${HOME}/.zsh/.iterm2_shell_integration.zsh" && source "${HOME}/.zsh/.iterm2_shell_integration.zsh"
 
