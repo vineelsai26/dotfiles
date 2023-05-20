@@ -1,9 +1,9 @@
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
-	url = https://github.com/vineelsai26/ohmyzsh
+	url = https://github.com/ohmyzsh/ohmyzsh
 [submodule ".config/nvim"]
 	path = .config/nvim
-	url = https://github.com/NvChad/NvChad
+	url = https://github.com/LazyVim/starter
 [submodule ".tmux"]
 	path = .tmux
 	url = https://github.com/gpakosz/.tmux
