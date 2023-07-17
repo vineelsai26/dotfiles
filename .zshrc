@@ -17,6 +17,3 @@ test -e "${HOME}/.zsh/.iterm2_shell_integration.zsh" && source "${HOME}/.zsh/.it
 eval "`vmn env`"
 export PATH="/opt/homebrew/opt/node@14/bin:$PATH"
 
-# Load Angular CLI autocompletion.
-source <(ng completion script)
-

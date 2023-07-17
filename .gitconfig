@@ -1,6 +1,6 @@
 [core]
 	editor = vim
-	autocrlf = false
+	autocrlf = input
 	eol = lf
 [commit]
 	gpgsign = true
