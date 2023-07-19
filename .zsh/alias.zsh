@@ -5,10 +5,19 @@ alias ll='ls -alF'
 alias l='ls -F'
 alias vim='nvim'
 alias rf='rm -rf'
-alias cat='bat'
 alias df='df -h'
 alias du='du -h'
 alias htop='btop'
+
+if ! command -v bat &> /dev/null; then
+    if ! command -v batcat &> /dev/null; then
+        alias cat='cat'
+    else
+        alias cat='batcat'
+    fi
+else
+    alias cat='bat'
+fi
 
 if [ -f /etc/os-release ]; then
     # freedesktop.org and systemd
