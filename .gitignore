@@ -14,7 +14,8 @@
 .vmn
 
 # SSH
-.ssh
+.ssh/*
+!.ssh/authorized_keys
 
 # Mac
 .DS_Store
