@@ -30,12 +30,14 @@ else
     VER=$(uname -r)
 fi
 
-if [[ $OS == *"Fedora"* ]]; then
+if [[ $OS == *"Arch"* ]]; then
+    alias up='sudo pacman -Syu'
+elif [[ $OS == *"NixOS"* ]]; then
+    alias up='sudo nixos-rebuild switch'
+elif [[ $OS == *"Ubuntu"* ]] || [[ $OS == *"Debian"* ]]; then
+    alias up='sudo apt update && apt upgrade'
+elif [[ $OS == *"Fedora"* ]]; then
     alias up='sudo dnf update'
-elif [[ $OS == *"Ubuntu"* ]]; then
-    alias up='sudo apt update && apt upgrade'
-elif [[ $OS == *"Debian"* ]]; then
-    alias up='sudo apt update && apt upgrade'
 elif [[ $OS == "Darwin" ]]; then
     alias up='brew update && brew upgrade'
 fi
