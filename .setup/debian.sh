@@ -1,9 +1,10 @@
 #!/bin/bash
 
+# Update and Upgrade
 sudo apt update && sudo apt upgrade -y
 
 # Install basic packages
-sudo apt install -y git zsh curl wget gpg nala vim tmux python3 python3-pip python3-venv python3-dev build-essential cmake apt-transport-https
+sudo apt install -y git zsh curl wget gpg nala exa bat btop vim tmux python3 python3-pip python3-venv python3-dev build-essential cmake apt-transport-https
 
 # Setup dotfiles
 curl -fsSL https://raw.githubusercontent.com/vineelsai26/dotfiles/main/.setup/dotfiles.sh | bash
