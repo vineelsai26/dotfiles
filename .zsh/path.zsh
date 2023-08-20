@@ -31,3 +31,17 @@ if [ -d "$HOME/Library/Python/3.11/bin" ]; then
     export PATH="$HOME/Library/Python/3.11/bin:$PATH"
 fi
 
+# iTerm2 Shell Integration
+if [[ $(uname -s) == "Darwin" ]]; then
+    test -e "${HOME}/.zsh/.iterm2_shell_integration.zsh" && source "${HOME}/.zsh/.iterm2_shell_integration.zsh"
+fi
+
+# pnpm
+if [[ $(uname -s) == "Darwin" ]]; then
+    export PNPM_HOME="/Users/vineel/Library/pnpm"
+    case ":$PATH:" in
+    *":$PNPM_HOME:"*) ;;
+    *) export PATH="$PNPM_HOME:$PATH" ;;
+    esac
+fi
+# pnpm end
