@@ -28,7 +28,7 @@
   time.timeZone = "Asia/Kolkata";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_IN";
+  i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_IN";
@@ -54,9 +54,13 @@
       wayland = true;
     };
 
-    # Enable gnome
-    desktopManager.gnome = {
+    # Enable i3
+    windowManager.i3 = {
       enable = true;
+      extraPackages = with pkgs; [
+        dmenu
+        polybar
+      ];
     };
   };
 
@@ -66,7 +70,7 @@
     xwayland.enable = true;
   };
 
-  # Enable CUPS to print documents.
+  # CUPS to print documents.
   services.printing.enable = false;
 
   # Enable sound with pipewire.
@@ -118,7 +122,6 @@
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
     packages = with pkgs; [
-      firefox
     #  thunderbird
     ];
     openssh = {
@@ -134,6 +137,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    # CLI Tools
     vim
     wget
     neofetch
@@ -145,19 +149,38 @@
     git
     htop
     btop
+    gnupg
+
+    # Dev Tools 
     vscode
     docker
+
+    # Terminal
     alacritty
+    kitty
+
+    # Programing Languages
     python3
     go
     gcc
     zig
+
+    # Browser
     brave
-    gnupg
+    firefox
+    google-chrome
+
+    # Window Managers
+    # Hyprland
     hyprland
     hyprpaper
     waybar
     wofi
+
+    # I3
+    i3
+
+    # 1Password
     _1password-gui
     _1password
   ];
