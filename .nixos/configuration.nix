@@ -14,13 +14,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -42,98 +35,6 @@
     LC_TIME = "en_IN";
   };
 
-  # Configure keymap in X11
-  services.xserver = {
-    enable = true;
-    layout = "us";
-    xkbVariant = "";
-
-    # Enable gdm and wayland
-    displayManager.gdm = {
-      enable = true;
-      wayland = true;
-    };
-
-    # Enable i3
-    windowManager.i3 = {
-      enable = true;
-      extraPackages = with pkgs; [
-        dmenu
-        polybar
-      ];
-    };
-  };
-
-  # Hyprland
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-
-  # CUPS to print documents.
-  services.printing.enable = false;
-
-  # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Environment
-  environment.shells = with pkgs; [ zsh ];
-  
-  # This is using a rec (recursive) expression to set and access XDG_BIN_HOME within the expression
-  # For more on rec expressions see https://nix.dev/tutorials/first-steps/nix-language#recursive-attribute-set-rec
-  environment.sessionVariables = rec {
-    XDG_CACHE_HOME  = "$HOME/.cache";
-    XDG_CONFIG_HOME = "$HOME/.config";
-    XDG_DATA_HOME   = "$HOME/.local/share";
-    XDG_STATE_HOME  = "$HOME/.local/state";
-
-    # Not officially in the specification
-    XDG_BIN_HOME    = "$HOME/.local/bin";
-    PATH = [ 
-      "${XDG_BIN_HOME}"
-    ];
-  };
-
-  # ZSH
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.vineel = {
-    isNormalUser = true;
-    description = "Vineel Sai";
-    extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.zsh;
-    packages = with pkgs; [
-    #  thunderbird
-    ];
-    openssh = {
-      authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHJu++Ud9JG3QBZWZD0Ox44ZibqDLb9BtfA/LcjW3IMo"
-      ];
-    };
-  };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -150,8 +51,12 @@
     htop
     btop
     gnupg
+    killall
 
-    # Dev Tools 
+    # fs progs
+    ntfs3g
+
+    # Dev Tools
     vscode
     docker
 
@@ -183,21 +88,108 @@
     # 1Password
     _1password-gui
     _1password
+
+    # File Managers
+    gnome.nautilus
   ];
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.vineel = {
+    isNormalUser = true;
+    description = "Vineel Sai";
+    extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
+    packages = with pkgs; [
+    #  thunderbird
+    ];
+    openssh = {
+      authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHJu++Ud9JG3QBZWZD0Ox44ZibqDLb9BtfA/LcjW3IMo"
+      ];
+    };
+  };
+
+  # ZSH
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+
+  # Environment
+  environment.shells = with pkgs; [ zsh ];
+
+  # This is using a rec (recursive) expression to set and access XDG_BIN_HOME within the expression
+  # For more on rec expressions see https://nix.dev/tutorials/first-steps/nix-language#recursive-attribute-set-rec
+  environment.sessionVariables = rec {
+    XDG_CACHE_HOME  = "$HOME/.cache";
+    XDG_CONFIG_HOME = "$HOME/.config";
+    XDG_DATA_HOME   = "$HOME/.local/share";
+    XDG_STATE_HOME  = "$HOME/.local/state";
+
+    # Not officially in the specification
+    XDG_BIN_HOME    = "$HOME/.local/bin";
+    PATH = [ 
+      "${XDG_BIN_HOME}"
+    ];
+  };
+
+  # Configure keymap in X11
+  services.xserver = {
+    enable = true;
+    layout = "us";
+    xkbVariant = "";
+
+    # Enable gdm and wayland
+    displayManager.gdm = {
+      enable = true;
+      wayland = true;
+    };
+
+    # Enable i3
+    windowManager.i3 = {
+      enable = true;
+      extraPackages = with pkgs; [
+        dmenu
+        polybar
+      ];
+    };
+  };
+
+  # Hyprland
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+
+  # Enable Gnome Keyring
+  security.pam.services.gdm.enableGnomeKeyring = true;
+  services.gnome.gnome-keyring.enable = true;
+
+  # Enable touchpad support (enabled default in most desktopManager).
+  services.xserver.libinput.enable = true;
+
+  # CUPS to print documents.
+  services.printing.enable = false;
+
+  # For Mounting USB Devices
+  services.devmon.enable = true;
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
+
+  # Enable sound with pipewire.
+  sound.enable = true;
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
 
   # Fonts
   fonts.fontDir.enable = true;
   fonts.fonts = with pkgs; [
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
 
   # List services that you want to enable:
 
@@ -209,18 +201,22 @@
     };
   };
 
+  # Enable Gnupg
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 22 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
+  # Define your hostname.
+  networking.hostName = "nixos";
+
+  # NixOS Version
+  system.stateVersion = "unstable";
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 }
-

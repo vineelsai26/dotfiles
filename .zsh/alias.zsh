@@ -33,7 +33,7 @@ fi
 if [[ $OS == *"Arch"* ]]; then
     alias up='sudo pacman -Syu'
 elif [[ $OS == *"NixOS"* ]]; then
-    alias up='sudo nixos-rebuild switch'
+    alias up='sudo nixos-rebuild switch && sudo nix-channel --update && sudo nix-env -u "*"'
 elif [[ $OS == *"Ubuntu"* ]] || [[ $OS == *"Debian"* ]]; then
     alias up='sudo apt update && apt upgrade'
 elif [[ $OS == *"Fedora"* ]]; then
