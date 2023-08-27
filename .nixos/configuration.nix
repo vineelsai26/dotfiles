@@ -84,6 +84,7 @@
 
     # I3
     i3
+    sway
 
     # 1Password
     _1password-gui
@@ -158,6 +159,9 @@
     enable = true;
     xwayland.enable = true;
   };
+
+  # Sway
+  programs.sway.enable = true;
 
   # Enable Gnome Keyring
   security.pam.services.gdm.enableGnomeKeyring = true;
