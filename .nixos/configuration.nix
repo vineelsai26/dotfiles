@@ -15,7 +15,19 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking = {
+    networkmanager = {
+      enable = true;
+      dns = "none";
+    };
+    nameservers = [
+      "1.1.1.1"
+      "1.0.0.1"
+      "2606:4700:4700::1111"
+      "2606:4700:4700::1001"
+    ];
+    dhcpcd.extraConfig = "nohook resolv.conf";
+  };
 
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
@@ -81,6 +93,7 @@
     hyprpaper
     waybar
     wofi
+    dunst
 
     # I3
     i3
@@ -143,6 +156,11 @@
       enable = true;
       wayland = true;
     };
+
+    # Gnome Desktop Manager
+    # desktopManager.gnome = {
+    #   enable = true;
+    # };
 
     # Enable i3
     windowManager.i3 = {
