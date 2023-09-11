@@ -64,6 +64,7 @@
     btop
     gnupg
     killall
+    ripgrep
 
     # fs progs
     ntfs3g
@@ -92,7 +93,7 @@
     hyprland
     hyprpaper
     waybar
-    wofi
+    rofi
     dunst
 
     # I3
