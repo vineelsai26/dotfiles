@@ -89,16 +89,17 @@
     google-chrome
 
     # Window Managers
-    # Hyprland
     hyprland
-    hyprpaper
-    waybar
-    rofi
-    dunst
-
-    # I3
     i3
     sway
+
+    # Window Manager Tools
+    waybar
+    hyprpaper
+    rofi
+    dunst
+    wl-clipboard
+    xclip
 
     # 1Password
     _1password-gui
@@ -222,6 +223,9 @@
     settings = {
       PasswordAuthentication = false;
     };
+    extraConfig = ''
+      MaxAuthTries 10
+    '';
   };
 
   # Enable Gnupg
@@ -238,7 +242,7 @@
   networking.hostName = "nixos";
 
   # NixOS Version
-  system.stateVersion = "unstable";
+  system.stateVersion = "23.05";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
