@@ -56,7 +56,7 @@
     neofetch
     curl
     bat
-    exa
+    eza
     neovim
     zsh
     git
@@ -82,6 +82,7 @@
     go
     gcc
     zig
+    rustc
 
     # Browser
     brave
@@ -90,6 +91,8 @@
 
     # Window Managers
     hyprland
+    xdg-desktop-portal-hyprland
+    hyprland-autoname-workspaces
     i3
     sway
 
@@ -105,18 +108,22 @@
     _1password-gui
     _1password
 
-    # File Managers
+    # Utils
     gnome.nautilus
+    gnome.gnome-system-monitor
+    gnome.gnome-disk-utility
+    ventoy-full
+    virt-manager
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.vineel = {
     isNormalUser = true;
     description = "Vineel Sai";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" ];
     shell = pkgs.zsh;
     packages = with pkgs; [
-    #  thunderbird
+      nodejs_20
     ];
     openssh = {
       authorizedKeys.keys = [
@@ -211,7 +218,7 @@
 
   # Fonts
   fonts.fontDir.enable = true;
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
@@ -228,6 +235,13 @@
     '';
   };
 
+  # Enable Docker
+  virtualisation.docker.enable = true;
+
+  # Enable libvirt
+  virtualisation.libvirtd.enable = true;
+  programs.dconf.enable = true; # virt-manager requires dconf to remember settings
+
   # Enable Gnupg
   programs.gnupg.agent = {
     enable = true;
@@ -242,7 +256,7 @@
   networking.hostName = "nixos";
 
   # NixOS Version
-  system.stateVersion = "23.05";
+  system.stateVersion = "unstable";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
