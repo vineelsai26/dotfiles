@@ -14,4 +14,7 @@ source "$HOME/.zsh/path.zsh"
 #VMN
 eval "`vmn env`"
 
-neofetch
+# Load Angular CLI autocompletion.
+source <(ng completion script)
+
+[ -f ~/.inshellisense/key-bindings.zsh ] && source ~/.inshellisense/key-bindings.zsh

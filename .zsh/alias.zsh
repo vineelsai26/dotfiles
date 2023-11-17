@@ -1,6 +1,6 @@
 alias apt='nala'
 alias sudo='sudo '
-alias ls='exa --icons'
+alias ls='eza --icons'
 alias ll='ls -alF'
 alias l='ls -F'
 alias vim='nvim'
@@ -8,7 +8,6 @@ alias rm='trash'
 alias rf='rm -rf'
 alias df='df -h'
 alias du='du -h'
-alias htop='btop'
 
 if ! command -v bat &> /dev/null; then
     if ! command -v batcat &> /dev/null; then
