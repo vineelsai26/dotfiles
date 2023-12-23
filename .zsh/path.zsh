@@ -31,6 +31,11 @@ if [ -d "$HOME/Library/Python/3.11/bin" ]; then
     export PATH="$HOME/Library/Python/3.11/bin:$PATH"
 fi
 
+# K3s
+if [ -f "$HOME/.kube/config" ]; then
+    export KUBECONFIG="$HOME/.kube/config"
+fi
+
 # iTerm2 Shell Integration
 if [[ $(uname -s) == "Darwin" ]]; then
     test -e "${HOME}/.zsh/.iterm2_shell_integration.zsh" && source "${HOME}/.zsh/.iterm2_shell_integration.zsh"

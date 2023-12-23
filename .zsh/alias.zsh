@@ -1,13 +1,26 @@
 alias apt='nala'
 alias sudo='sudo '
-alias ls='eza --icons'
-alias ll='ls -alF'
-alias l='ls -F'
 alias vim='nvim'
-alias rm='trash'
-alias rf='rm -rf'
 alias df='df -h'
 alias du='du -h'
+
+if ! command -v eza &> /dev/null; then
+  alias ls='ls'
+else
+  alias ls='eza --icons'
+fi
+
+alias ll='ls -alF'
+alias l='ls -F'
+
+if ! command -v trash &> /dev/null; then
+  echo "Trah CLI is not present deleting permently"
+  alias rm='rm'
+else
+  alias rm='trash'
+fi
+
+alias rf='rm -rf'
 
 if ! command -v bat &> /dev/null; then
     if ! command -v batcat &> /dev/null; then
