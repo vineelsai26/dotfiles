@@ -1,168 +1,191 @@
 {
-    "position": "top",
-    "layer": "top",
-    "height": 16,
-    "margin-top": 0,
-    "margin-bottom": 0,
-    "margin-left": 0,
-    "margin-right": 0,
-    "modules-left": ["custom/launcher", "wlr/workspaces", "custom/playerctl", "custom/playerlabel"],
-    "modules-center": ["cpu", "memory", "disk"],
-    "modules-right": ["tray", "custom/randwall", "network", "pulseaudio", "clock"],
-    // Modules configuration
-	"clock": {
-		"format": " {:%H:%M}",
-		"tooltip": "true",
-        	"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        	"format-alt": " {:%d/%m}"
-	},
-	
-
-	"wlr/workspaces": {
-        "active-only": false,
-        "all-outputs": true,
-        "disable-scroll": false,
-        "on-scroll-up": "hyprctl dispatch workspace -1",
-        "on-scroll-down": "hyprctl dispatch workspace +1",
-		"format": "{icon}",
-		"on-click": "activate",
-		"format-icons": {
-//			"1": "一",
-//			"2": "二",
-//			"3": "三",
-//			"4": "四",
-//			"5": "五",
-			"urgent": "",
-			"active": "",
-			"default": "󰧞",
-    "sort-by-number": true
-    },
-    },
-
-    "custom/playerctl": {
-      "format": "{icon}",
-      "return-type": "json",
-      "max-length": 64,
-      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
-      "on-click-middle": "playerctl play-pause",
-      "on-click": "playerctl previous",
-      "on-click-right": "playerctl next",
-      "format-icons": {
-        "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
-        "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
-      },
-    },
-
-    "custom/playerlabel": {
-      "format": "<span>{}</span>",
-      "return-type": "json",
-      "max-length": 48,
-      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
-      "on-click-middle": "playerctl play-pause",
-      "on-click": "playerctl previous",
-      "on-click-right": "playerctl next",
-      "format-icons": {
-        "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
-        "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
-      },
-    },
-
-	"battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format":"{icon}  {capacity}%",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "{icon} {time}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
-	},
-
-  "memory": {
-    "format": "󰍛 {}%",
-    "format-alt": "󰍛 {used}/{total} GiB",
-    "interval": 5
+  "layer": "top",
+  "modules-left": [
+    "clock",
+    "hyprland/window"
+  ],
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
+  "modules-right": [
+    "tray",
+    "cpu",
+    "temperature",
+    "memory",
+    "idle_inhibitor",
+    "network",
+    "pulseaudio",
+    "bluetooth",
+    "backlight",
+    "battery"
+  ],
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 333,
+    "seperate-outputs": true
   },
-
+  "clock": {
+    "format": "<span foreground='#e6b673'> </span><span>{:%I:%M %a %d}</span>",
+    "tooltip-format": "{calendar}",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "on-scroll": 1,
+      "on-click-right": "mode",
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>{%W}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b>{}</b></span>"
+      }
+    },
+    "actions": {
+      "on-click-middle": "mode",
+      "on-click-right": "shift_up",
+      "on-click": "shift_down"
+    }
+  },
   "cpu": {
-    "format": "󰻠 {usage}%",
-    "format-alt": "󰻠 {avg_frequency} GHz",
-    "interval": 5
+    "format": "<span foreground='#aad94c'>󰯳</span> {usage}%"
   },
-
-  "disk": {
-    "format": "󰋊 {}%",
-    "format-alt": "󰋊 {used}/{total} GiB",
-    "interval": 5,
-    "path": "/mnt/Datos"
+  "memory": {
+    "format": "<span foreground='#d2a6ff'>󰍛</span> {}%",
+    "interval": 1
   },
-	
-	"network": {
-        	"format-wifi": "󰤨",
-        	"format-ethernet": " {ifname}: Aesthetic",
-        	"format-linked": " {ifname} (No IP)",
-        	"format-disconnected": "󰤭",
-        	"format-alt": " {ifname}: {ipaddr}/{cidr}",
-          "tooltip-format": "{essid}",
-          "on-click-right": "nm-connection-editor"
-	},
-
-	"tray": {
-		"icon-size": 16,
-		"spacing": 5
-	},
-
-	"backlight": {
-        // "device": "acpi_video1",
-	"format": "{icon} {percent}%",
-        "format-icons": ["", "", "", "", "", "", "", "", ""],
-//	"on-scroll-up":,
-//	"on-scroll-down":,
-	},
-
-	"pulseaudio": {
-		"format": "{icon} {volume}%",
-        	"format-muted": "󰝟",
-		"format-icons": {
-			"default": ["󰕿", "󰖀", "󰕾"]
-		},
-		"on-click": "bash ~/.scripts/volume mute",
-    "on-scroll-up": "bash ~/.scripts/volume up",
-    "on-scroll-down": "bash ~/.scripts/volume down",
-    "scroll-step": 5,
-		"on-click-right": "pavucontrol"
+  "custom/gpu-util": {
+    "exec": "./scripts/gpu-util",
+    "format": "<span foreground='#67b0e8'>󰯿</span> {}",
+    "interval": 1
   },
-  "custom/randwall": {
-    "format": "󰏘",
-    "on-click": "bash $HOME/.config/hypr/randwall.sh",
-    "on-click-right": "bash $HOME/.config/hypr/wall.sh"
+  "custom/gpu-temp": {
+    "exec": "./scripts/gpu-temp",
+    "format": "<span foreground='#e57474'></span> {}",
+    "interval": 1
   },
-  "custom/launcher": {
-    "format": "󰈸",
-    "on-click": "bash $HOME/.config/rofi/launcher.sh",
-//    "on-click": "wofi --show drun -I -a -n -W 500 -H 376 -s ~/.config/wofi/themes/gruvbox.css",
-    "on-click-right": "bash $HOME/.config/rofi/run.sh"  
-//    "on-click-right": "wofi --show run -I -a -n -W 500 -H 376 -s ~/.config/wofi/themes/gruvbox.css"  
+  "temperature": {
+    "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+    "critical-threshold": 80,
+    "format": "<span foreground='#f29668'></span> {temperatureC}°C",
+    "interval": 1
   },
-
-  "custom/wf-recorder": {
-		"format": "{}",
-		"interval": "once",
-		"exec": "echo ''",
-		"tooltip": "false",
-		"exec-if": "pgrep 'wf-recorder'",
-		"on-click": "exec ./scripts/wlrecord.sh",
-		"signal": 8
-	},
-
-  "custom/hyprpicker": {
-    "format": "󰈋",
-    "on-click": "hyprpicker -a -f hex",
-    "on-click-right": "hyprpicker -a -f rgb"
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "<span foreground='#FFA066'>{icon}</span>  {percent}%",
+    "states": [
+      0,
+      25,
+      50,
+      100
+    ],
+    "format-icons": [
+      "",
+      "󰃝",
+      "󰃟",
+      ""
+    ],
+    "tooltip-format": "{percent}%",
+    "tooltip": true
   },
+  "hyprland/workspaces": {
+    "format": "{name}",
+    "format-icons": {
+      "default": "",
+      "urgent": "",
+      "active": "󱓻",
+      "empty": ""
+    },
+    "active-only": false,
+    "sort-by-number": true,
+    "on-click": "activate",
+    "all-outputs": false
+  },
+  "battery": {
+    "format": "<span>{icon}</span>  {capacity}%",
+    "format-critical": "<span foreground='#F38BA8'>{icon}</span>  {capacity}%",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "format-time": "{H}h{M}m",
+    "format-charging": "<span foreground='#a6e3a1'>{icon}</span> <span foreground='#a6e3a1'></span> {capacity}% | {power} W",
+    "format-full": "<span foreground='#a6e3a1'>{icon}</span> <span foreground='#a6e3a1'></span> Charged",
+    "interval": 1,
+    "states": {
+      "critical": 30
+    },
+    "tooltip": true,
+    "on-click": "exec dunstctl history-pop"
+  },
+  "network": {
+    "format-wifi": "󰤨 {essid}",
+    "format-ethernet": "󰤨 {ifname}",
+    "format-linked": "󰤨 {ifname} (No IP)",
+    "format-disconnected": "󰤭",
+    "format-alt": "󰤨 {ifname}: {ipaddr}/{cidr}",
+    "tooltip-format": "{essid}",
+    "on-click-right": "nm-connection-editor"
+  },
+  "pulseaudio": {
+    "format": "<span foreground='#f26d78'>{icon}</span> {volume}%  {format_source}",
+    "format-bluetooth": "<span foreground='#95e6cb'>{icon}</span> {volume}%  {format_source}",
+    "format-bluetooth-muted": "<span foreground='#95e6cb'>󰖁</span>  {format_source}",
+    "format-muted": "<span foreground='#F38BA8'>󰖁</span>  {format_source}",
+    "format-source": "<span foreground='#fab387'></span> {volume}%",
+    "format-source-muted": "<span foreground='#F38BA8'></span>",
+    "format-icons": {
+      "headphone": "",
+      "phone": "",
+      "portable": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click-right": "pavucontrol",
+    "on-click": "amixer set Master toggle",
+    "input": true
+  },
+  "custom/playerctl": {
+    "format": "{icon}  <span>{}</span>",
+    "return-type": "json",
+    "max-length": 333,
+    "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} ~ {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+    "on-click-middle": "playerctl play-pause",
+    "on-click": "playerctl previous",
+    "on-click-right": "playerctl next",
+    "format-icons": {
+      "Playing": "<span foreground='#98BB6C'></span>",
+      "Paused": "<span foreground='#E46876'></span>"
+    }
+  },
+  "tray": {
+    "format": "<span foreground='#957FB8'>{icon}</span>",
+    "icon-size": 14,
+    "spacing": 5
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "󱠛",
+      "deactivated": "󱤱"
+    }
+  },
+  "bluetooth": {
+    "on-click": "/home/vineel/.config/waybar/scripts/bluetooth-control",
+    "on-click-right": "blueman-manager",
+    "format": "{icon}",
+    "interval": 15,
+    "format-icons": {
+      "on": "<span foreground='#43242B'></span>",
+      "off": "<span foreground='#76946A'>󰂲</span>",
+      "disabled": "󰂲",
+      "connected": ""
+    },
+    "tooltip-format": "{device_alias} {status}"
   }
 }

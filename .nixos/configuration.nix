@@ -51,6 +51,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # CLI Tools
+    awscli2
     vim
     wget
     neofetch
@@ -65,9 +66,12 @@
     gnupg
     killall
     ripgrep
+    trash-cli
+    jq
 
     # fs progs
     ntfs3g
+    btrfs-progs
 
     # Dev Tools
     vscode
@@ -103,6 +107,9 @@
     dunst
     wl-clipboard
     xclip
+    polkit
+    polkit_gnome
+    xorg.xhost
 
     # 1Password
     _1password-gui
@@ -111,9 +118,17 @@
     # Utils
     gnome.nautilus
     gnome.gnome-system-monitor
-    gnome.gnome-disk-utility
+    gparted
     ventoy-full
     virt-manager
+    networkmanagerapplet
+    pavucontrol
+
+    # Themes
+    materia-theme
+    bibata-cursors
+    papirus-icon-theme
+    ubuntu_font_family
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -142,6 +157,7 @@
   # This is using a rec (recursive) expression to set and access XDG_BIN_HOME within the expression
   # For more on rec expressions see https://nix.dev/tutorials/first-steps/nix-language#recursive-attribute-set-rec
   environment.sessionVariables = rec {
+    POLKIT_BIN = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
     XDG_CACHE_HOME  = "$HOME/.cache";
     XDG_CONFIG_HOME = "$HOME/.config";
     XDG_DATA_HOME   = "$HOME/.local/share";
@@ -216,6 +232,10 @@
     pulse.enable = true;
   };
 
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  services.blueman.enable = true;
+
   # Fonts
   fonts.fontDir.enable = true;
   fonts.packages = with pkgs; [
@@ -248,6 +268,24 @@
     enableSSHSupport = true;
   };
 
+  systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
+  };
+
+  security.polkit.enable = true;
+
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 22 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -256,7 +294,7 @@
   networking.hostName = "nixos";
 
   # NixOS Version
-  system.stateVersion = "unstable";
+  system.stateVersion = "23.11";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
