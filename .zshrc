@@ -6,15 +6,12 @@ plugins=(zsh-autosuggestions zsh-completions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
+source "$HOME/.zsh/path.zsh"
 source "$HOME/.zsh/alias.zsh"
 source "$HOME/.zsh/nvm.zsh"
 source "$HOME/.zsh/gpg.zsh"
-source "$HOME/.zsh/path.zsh"
 
 #VMN
 eval "`vmn env`"
-
-# Load Angular CLI autocompletion.
-source <(ng completion script)
 
 [ -f ~/.inshellisense/key-bindings.zsh ] && source ~/.inshellisense/key-bindings.zsh

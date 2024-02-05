@@ -21,6 +21,10 @@ if test -e "brew"; then
     fi
 fi
 
+if test -e "ng"; then
+  source <(ng completion script)
+fi
+
 # VMN Directory
 if [ -d "$HOME/.vmn" ]; then
     export PATH="$HOME/.vmn:$PATH"
