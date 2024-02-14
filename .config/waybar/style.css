@@ -71,7 +71,6 @@ window#waybar {
   padding: 1px;
   background-color: @bg;
   color: @bg;
-
 }
 
 #workspaces button {
@@ -86,8 +85,6 @@ window#waybar {
 #workspaces button.active {
     background-color:@yellow;
     color: @bg;
-    /*color: @bg;*/
-
 }
 
 #workspaces button.urgent {
@@ -125,7 +122,6 @@ window#waybar {
   color: @fg;
 }
 
-
 #network {
   margin: 5px 5px 2px 5px;
   padding-left: 10px;
@@ -138,6 +134,7 @@ window#waybar {
 #network.linked {
   color: @peach;
 }
+
 #network.disconnected,
 #network.disabled {
   color: @red;
@@ -146,22 +143,19 @@ window#waybar {
 #custom-subs {
 	color: @bg;
 	margin: 5px 5px 2px 5px;
-    padding-left: 10px;
-    padding-right: 12px;
-    border-radius: 7px;
-    background-color: @rosewater;
-
+  padding-left: 10px;
+  padding-right: 12px;
+  border-radius: 7px;
+  background-color: @rosewater;
 }
-
 
 #custom-cliphist {
 	color: @peach;
 	margin: 5px 5px 2px 5px;
-    padding-left: 10px;
-    padding-right: 12px;
-    border-radius: 7px;
-    background-color: @bg;
-
+  padding-left: 10px;
+  padding-right: 12px;
+  border-radius: 7px;
+  background-color: @bg;
 }
 
 #custom-gpu-temp,
@@ -198,7 +192,6 @@ window#waybar {
   border-bottom-right-radius: 0px;
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
-
 }
 
 #battery,
@@ -218,7 +211,7 @@ window#waybar {
 	margin-right: 0px;
 	margin-left: 5px;
 	padding-left: 10px;
-  	padding-right: 7.5px;
+  padding-right: 7.5px;
 	border-top-right-radius: 0px;
 	border-bottom-right-radius: 0px;
 	border-top-left-radius: 7px;

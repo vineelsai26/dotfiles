@@ -1,5 +1,6 @@
 {
   "layer": "top",
+  "height": 35,
   "modules-left": [
     "clock",
     "custom/playerctl",
@@ -18,7 +19,7 @@
     "pulseaudio",
     "bluetooth",
     "backlight",
-    "battery",
+    "battery"
   ],
   "hyprland/window": {
     "format": "{title}",
@@ -123,12 +124,16 @@
   },
   "network": {
     "format-wifi": "󰤨 {essid}",
-    "format-ethernet": "󰤨 {ifname}",
+    "format-ethernet": "🌐 {ifname}: ↕ {bandwidthTotalBytes}",
     "format-linked": "󰤨 {ifname} (No IP)",
     "format-disconnected": "󰤭",
-    "format-alt": "󰤨 {ifname}: {ipaddr}/{cidr}",
-    "tooltip-format": "{essid}",
-    "on-click-right": "nm-connection-editor"
+    "format-alt": "🌐 {ifname}: {ipaddr}/{cidr}",
+    "interval": 1,
+    "tooltip": true,
+    "tooltip-format-ethernet": " IP: {ipaddr} \n Network Up: {bandwidthUpBytes} \n Network Down: {bandwidthDownBytes} ",
+    "tooltip-format-wifi": " Network Name: {essid} \n IP: {ipaddr} \n Network Up: {bandwidthUpBytes} \n Network Down: {bandwidthDownBytes} ",
+    "on-click-right": "nm-connection-editor",
+    "min-length": 22
   },
   "pulseaudio": {
     "format": "<span foreground='#f26d78'>{icon}</span> {volume}%  {format_source}",
@@ -160,8 +165,8 @@
     "on-click": "playerctl play-pause",
     "on-click-right": "playerctl next",
     "format-icons": {
-      "Playing": "<span foreground='#98BB6C'></span>",
-      "Paused": "<span foreground='#E46876'></span>"
+      "Playing": "<span foreground='#98BB6C'></span>",
+      "Paused": "<span foreground='#E46876'></span>"
     }
   },
   "tray": {
