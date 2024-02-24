@@ -7,7 +7,7 @@ alias du='du -h'
 if ! command -v eza &> /dev/null; then
   alias ls='ls'
 else
-  alias ls='eza --icons'
+  alias ls='eza --icons --group-directories-first'
 fi
 
 alias ll='ls -alF'

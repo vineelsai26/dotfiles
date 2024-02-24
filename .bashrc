@@ -147,3 +147,4 @@ eval "$(vmn env)"
 
 #VMN 
 eval "`vmn env`"
+. "$HOME/.cargo/env"

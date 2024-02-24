@@ -2,12 +2,12 @@
   "layer": "top",
   "height": 35,
   "modules-left": [
-    "clock",
+    "hyprland/workspaces",
     "custom/playerctl",
     "hyprland/window"
   ],
   "modules-center": [
-    "hyprland/workspaces"
+    "clock"
   ],
   "modules-right": [
     "tray",
@@ -90,7 +90,7 @@
     "tooltip": true
   },
   "hyprland/workspaces": {
-    "format": "{name}",
+    "format": "<span> {name} {windows} </span>",
     "format-icons": {
       "default": "",
       "urgent": "",
@@ -100,10 +100,33 @@
     "active-only": false,
     "sort-by-number": true,
     "on-click": "activate",
-    "all-outputs": false
+    "all-outputs": false,
+    "window-rewrite-default": "",
+    "window-rewrite": {
+      "google-chrome": "",
+      "firefox": "",
+      "title<.*YouTube.*>": "",
+      "title<.*github.*>": "",
+      "title<.*Aniwatch.*>": "󰑈",
+      "kitty": "",
+      "alacritty": "",
+      "code": "󰨞",
+      "nautilus": "",
+      "1password": "",
+      "gnome-disks": "",
+      "gparted": "",
+      "polkit-gnome-authentication-agent-1": "",
+      "gnome-keyring-daemon": "",
+      "rpi-imager": "",
+      "blueman-manager": "",
+      "virt-manager": "",
+      "Android Studio": "󰀴",
+      "htop": "󱑽",
+      "gnome-system-monitor": "󱑽"
+    }
   },
   "battery": {
-    "format": "<span>{icon}</span>  {capacity}%",
+    "format": "<span>{icon}</span> {capacity}%",
     "format-critical": "<span foreground='#F38BA8'>{icon}</span>  {capacity}%",
     "format-icons": [
       "",
