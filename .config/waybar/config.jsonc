@@ -122,7 +122,8 @@
       "virt-manager": "",
       "Android Studio": "󰀴",
       "htop": "󱑽",
-      "gnome-system-monitor": "󱑽"
+      "gnome-system-monitor": "󱑽",
+      "nm-connection-editor": "",
     }
   },
   "battery": {
@@ -146,7 +147,7 @@
     "on-click": "exec dunstctl history-pop"
   },
   "network": {
-    "format-wifi": "󰤨 {essid}",
+    "format-wifi": "󰤨 {essid}: ↕ {bandwidthTotalBytes}",
     "format-ethernet": "🌐 {ifname}: ↕ {bandwidthTotalBytes}",
     "format-linked": "󰤨 {ifname} (No IP)",
     "format-disconnected": "󰤭",
