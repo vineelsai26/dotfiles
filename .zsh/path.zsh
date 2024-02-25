@@ -23,6 +23,13 @@ if test -e "brew"; then
     fi
 fi
 
+# 1Password
+if [ -f "/Applications/1Password.app/Contents/MacOS/op-ssh-sign" ]; then
+    export PATH="/Applications/1Password.app/Contents/MacOS:$PATH"
+elif [ -f "/opt/1Password/op-ssh-sign" ]; then
+    export PATH="/opt/1Password:$PATH"
+fi
+
 if test -e "ng"; then
   source <(ng completion script)
 fi
