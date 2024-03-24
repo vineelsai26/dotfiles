@@ -5,16 +5,13 @@
 [commit]
 	gpgsign = true
 [user]
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILFxoOyDEW620PrgX1atOr0N5+35im37nko3KcY+odPq
+	signingkey = 4431E64723B4ADDE
 	email = mail@vineelsai.com
 	name = Vineel Sai
 [tag]
 	gpgSign = true
 [gpg]
 	program = gpg
-	format = ssh
-[gpg "ssh"]
-	program = op-ssh-sign
 [push]
 	autoSetupRemote = true
 [filter "lfs"]
