@@ -56,4 +56,4 @@ elif [[ $OS == "Darwin" ]]; then
 fi
 
 # Using Git Bare repo for config management
-alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias dotfiles='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
