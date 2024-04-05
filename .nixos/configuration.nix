@@ -49,8 +49,11 @@
     ];
     dhcpcd.extraConfig = "nohook resolv.conf";
     hostName = "nixos";
-    firewall.allowedTCPPorts = [ 22 ];
-    # firewall.allowedUDPPorts = [ ... ];
+    firewall = {
+      allowedTCPPorts = [ 22 ];
+      enable = true;
+      allowPing = true;
+    };
   };
 
   # Set your time zone.
@@ -117,6 +120,8 @@
 
     systemd.user.sessionVariables = config.home-manager.users.vineel.home.sessionVariables;
  
+    wayland.windowManager.hyprland.plugins = [];
+
     home.stateVersion = "23.11";
   };
 
@@ -196,6 +201,7 @@
       ninja
       pkg-config
       cpio
+      gh
 
       # fs progs
       ntfs3g
@@ -247,6 +253,7 @@
       # Utils
       gnome.nautilus
       gnome.gnome-system-monitor
+      gnome.gnome-disk-utility
       gparted
       ventoy-full
       virt-manager
@@ -255,6 +262,7 @@
       bitwarden-desktop
       bitwarden-cli
       pinentry-all
+      tailscale
 
       # Themes
       materia-theme
@@ -274,6 +282,8 @@
         variant = "";
         layout = "us";
       };
+
+      libinput.enable = true;
 
       # Enable gdm and wayland
       displayManager.gdm = {
@@ -296,10 +306,54 @@
       };
     };
 
-    gnome.gnome-keyring.enable = true;
+    samba = {
+      enable = true;
+      securityType = "user";
+      openFirewall = true;
+      extraConfig = ''
+        workgroup = WORKGROUP
+        server string = smbnix
+        netbios name = smbnix
+        security = user
+        #use sendfile = yes
+        #max protocol = smb2
+        # note: localhost is the ipv6 localhost ::1
+        # hosts allow = 192.168.0. 127.0.0.1 localhost
+        # hosts deny = 0.0.0.0/0
+        guest account = nobody
+        map to guest = bad user
+      '';
+      shares = {
+        Alpha = {
+          path = "/home/vineel";
+          browseable = "yes";
+          "read only" = "no";
+          "guest ok" = "no";
+          "create mask" = "0644";
+          "directory mask" = "0755";
+          "force user" = "vineel";
+          "force group" = "users";
+        };
+        TimeMachine = {
+          path = "/home/vineel/dekku/TimeMachine";
+          "valid users" = "vineel";
+          public = "no";
+          writeable = "yes";
+          "force user" = "vineel";
+          "fruit:aapl" = "yes";
+          "fruit:time machine" = "yes";
+          "fruit:time machine max size" = "400G";
+          "vfs objects" = "catia fruit streams_xattr";
+        };
+      };
+    };
 
-    # Enable touchpad support (enabled default in most desktopManager).
-    xserver.libinput.enable = true;
+    samba-wsdd = {
+      enable = true;
+      openFirewall = true;
+    };
+
+    gnome.gnome-keyring.enable = true;
 
     # CUPS to print documents.
     printing.enable = false;
@@ -327,6 +381,8 @@
       alsa.support32Bit = true;
       pulse.enable = true;
     };
+
+    tailscale.enable = true;
   };
 
   security = {

@@ -29,6 +29,11 @@
       fsType = "btrfs";
     };
 
+  fileSystems."/home/vineel/dekku" =
+    { device = "/dev/disk/by-uuid/3c6926a3-f456-43a1-8d2a-5a580c03832c";
+      fsType = "ext4";
+    };
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
