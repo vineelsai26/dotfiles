@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 {
   imports =
@@ -102,29 +102,6 @@
     enable = true;
     platformTheme = "gnome";
     style = "adwaita-dark";
-  };
-  
-  programs = {
-    zsh = {
-      enable = true;
-    };
-
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-    };
-
-    sway = {
-      enable = true;
-    };
-
-    dconf.enable = true; # virt-manager requires dconf to remember settings
-
-    # Enable Gnupg
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
   };
 
   # Environment
@@ -250,6 +227,30 @@
       gnome.gnome-themes-extra
       bibata-cursors
     ];
+  };
+
+  programs = {
+    zsh = {
+      enable = true;
+    };
+
+    hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      xwayland.enable = true;
+    };
+
+    sway = {
+      enable = true;
+    };
+
+    dconf.enable = true; # virt-manager requires dconf to remember settings
+
+    # Enable Gnupg
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
   };
 
   # Configure keymap in X11
