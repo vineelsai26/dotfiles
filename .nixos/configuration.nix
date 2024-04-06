@@ -8,31 +8,34 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      <home-manager/nixos>
     ];
 
   # Bootloader.
-  boot.loader = {
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
-    };
-    grub = {
-      efiSupport = true;
-      device = "nodev";
-      useOSProber = true;
-      theme = pkgs.stdenv.mkDerivation {
-        pname = "distro-grub-themes";
-        version = "3.1";
-        src = pkgs.fetchFromGitHub {
-          owner = "AdisonCavani";
-          repo = "distro-grub-themes";
-          rev = "v3.1";
-          hash = "sha256-ZcoGbbOMDDwjLhsvs77C7G7vINQnprdfI37a9ccrmPs=";
+  boot = {
+    loader = {
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
+      };
+      grub = {
+        efiSupport = true;
+        device = "nodev";
+        useOSProber = true;
+        theme = pkgs.stdenv.mkDerivation {
+          pname = "distro-grub-themes";
+          version = "3.1";
+          src = pkgs.fetchFromGitHub {
+            owner = "AdisonCavani";
+            repo = "distro-grub-themes";
+            rev = "v3.1";
+            hash = "sha256-ZcoGbbOMDDwjLhsvs77C7G7vINQnprdfI37a9ccrmPs=";
+          };
+          installPhase = "cp -r customize/nixos $out";
         };
-        installPhase = "cp -r customize/nixos $out";
       };
     };
+
+    extraModprobeConfig = "options kvm_amd nested=1";
   };
 
   # Enable networking
@@ -42,10 +45,10 @@
       dns = "none";
     };
     nameservers = [
-      "1.1.1.1"
-      "1.0.0.1"
-      "2606:4700:4700::1111"
-      "2606:4700:4700::1001"
+      "10.0.10.4"
+      "10.0.10.2"
+      #"2606:4700:4700::1111"
+      #"2606:4700:4700::1001"
     ];
     dhcpcd.extraConfig = "nohook resolv.conf";
     hostName = "nixos";
@@ -94,37 +97,7 @@
 
     defaultUserShell = pkgs.zsh;
   };
-
-  home-manager.users.vineel = { pkgs, ... }: {
-    dconf.settings = { 
-      "org/gnome/desktop/interface" = {
-        color-scheme = "prefer-dark";
-      };
-    };
-
-    home.pointerCursor = {
-      gtk.enable = true;
-      # x11.enable = true;
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Ice";
-      size = 16;
-    };
-
-    gtk = {
-      enable = true;
-      theme = {
-        name = "Adwaita-dark";
-        package = pkgs.gnome.gnome-themes-extra;
-      };
-    };
-
-    systemd.user.sessionVariables = config.home-manager.users.vineel.home.sessionVariables;
  
-    wayland.windowManager.hyprland.plugins = [];
-
-    home.stateVersion = "23.11";
-  };
-
   qt = {
     enable = true;
     platformTheme = "gnome";
@@ -202,6 +175,7 @@
       pkg-config
       cpio
       gh
+      distrobox
 
       # fs progs
       ntfs3g
@@ -257,12 +231,16 @@
       gparted
       ventoy-full
       virt-manager
+      libvirt
+      OVMFFull
+      packagekit
       networkmanagerapplet
       pavucontrol
       bitwarden-desktop
       bitwarden-cli
       pinentry-all
       tailscale
+      cockpit
 
       # Themes
       materia-theme
@@ -355,6 +333,11 @@
 
     gnome.gnome-keyring.enable = true;
 
+    cockpit = {
+      enable = true;
+      port = 9090;
+    };
+
     # CUPS to print documents.
     printing.enable = false;
 
@@ -422,7 +405,21 @@
 
   # Enable libvirt
   virtualisation = {
-    libvirtd.enable = true;
+    libvirtd = {
+      enable = true;
+      qemu = {
+        ovmf = {
+          enable = true;
+          packages = [
+            (pkgs.OVMF.override {
+              secureBoot = true;
+              tpmSupport = true;
+            }).fd
+          ];
+        };
+        swtpm.enable = true;
+      };
+    };
     docker.enable = true;
   };
 
