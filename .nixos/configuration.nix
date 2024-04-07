@@ -23,11 +23,11 @@
         useOSProber = true;
         theme = pkgs.stdenv.mkDerivation {
           pname = "distro-grub-themes";
-          version = "3.1";
+          version = "3.2";
           src = pkgs.fetchFromGitHub {
             owner = "AdisonCavani";
             repo = "distro-grub-themes";
-            rev = "v3.1";
+            rev = "v3.2";
             hash = "sha256-ZcoGbbOMDDwjLhsvs77C7G7vINQnprdfI37a9ccrmPs=";
           };
           installPhase = "cp -r customize/nixos $out";
@@ -44,12 +44,22 @@
       enable = true;
       dns = "none";
     };
+    bridges = {
+      vmbr0 = {
+        interfaces = [
+          #"wlp6s0"
+          "enp4s0"
+        ];
+        rstp = true;
+      };
+    };
     nameservers = [
       "10.0.10.4"
       "10.0.10.2"
       #"2606:4700:4700::1111"
       #"2606:4700:4700::1001"
     ];
+    interfaces.vmbr0.useDHCP = true;
     dhcpcd.extraConfig = "nohook resolv.conf";
     hostName = "nixos";
     firewall = {
@@ -209,7 +219,7 @@
       ventoy-full
       virt-manager
       libvirt
-      OVMFFull
+      bridge-utils
       packagekit
       networkmanagerapplet
       pavucontrol
@@ -218,6 +228,10 @@
       pinentry-all
       tailscale
       cockpit
+      playerctl
+
+      # social
+      discord
 
       # Themes
       materia-theme
@@ -420,6 +434,9 @@
         };
         swtpm.enable = true;
       };
+      allowedBridges = [
+        "vmbr0"
+      ];
     };
     docker.enable = true;
   };
