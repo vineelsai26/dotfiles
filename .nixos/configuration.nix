@@ -54,10 +54,10 @@
       };
     };
     nameservers = [
-      "10.0.10.4"
-      "10.0.10.2"
-      #"2606:4700:4700::1111"
-      #"2606:4700:4700::1001"
+      "1.1.1.1"
+      "1.0.0.1"
+      "2606:4700:4700::1111"
+      "2606:4700:4700::1001"
     ];
     interfaces.vmbr0.useDHCP = true;
     dhcpcd.extraConfig = "nohook resolv.conf";
@@ -95,9 +95,7 @@
       description = "Vineel Sai";
       extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" ];
       shell = pkgs.zsh;
-      packages = with pkgs; [
-        nodejs_20
-      ];
+      packages = with pkgs; [];
       openssh = {
         authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHJu++Ud9JG3QBZWZD0Ox44ZibqDLb9BtfA/LcjW3IMo"
@@ -177,11 +175,13 @@
       kitty
 
       # Programing Languages
-      python3
+      python312
       go
       gcc
       zig
       rustup
+      bun
+      nodejs_20
 
       # Browser
       brave
@@ -223,7 +223,7 @@
       packagekit
       networkmanagerapplet
       pavucontrol
-      bitwarden-desktop
+      #bitwarden-desktop
       bitwarden-cli
       pinentry-all
       tailscale
