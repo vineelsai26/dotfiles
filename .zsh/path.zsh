@@ -23,6 +23,11 @@ if test -e "brew"; then
     fi
 fi
 
+# Cargo setup
+if [ -f "$HOME/.cargo/env" ]; then
+    source "$HOME/.cargo/env"
+fi
+
 # 1Password
 if [ -f "/Applications/1Password.app/Contents/MacOS/op-ssh-sign" ]; then
     export PATH="/Applications/1Password.app/Contents/MacOS:$PATH"
