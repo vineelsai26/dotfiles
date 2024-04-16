@@ -1,6 +1,9 @@
-eval "$(starship init bash)"
+source "$HOME/.zsh/path.zsh"
+source "$HOME/.zsh/alias.zsh"
+source "$HOME/.zsh/nvm.zsh"
+source "$HOME/.zsh/gpg.zsh"
 
-export PATH="$HOME/.local/bin:$PATH"
+eval "$(starship init bash)"
 
 #VMN
 eval "$(vmn env)"

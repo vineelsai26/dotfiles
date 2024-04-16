@@ -1,14 +1,13 @@
 source "$HOME/.zsh/path.zsh"
 source "$HOME/.zsh/alias.zsh"
-source "$HOME/.zsh/nvm.zsh"
 source "$HOME/.zsh/gpg.zsh"
 
-export ZSH="$HOME/.zsh/ohmyzsh"
-source "$ZSH/oh-my-zsh.sh"
+export OH_MY_ZSH="$HOME/.zsh/ohmyzsh"
+source "$OH_MY_ZSH/oh-my-zsh.sh"
 
-source "$ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "$ZSH/custom/plugins/zsh-completions/zsh-completions.plugin.zsh"
-source "$ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$OH_MY_ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$OH_MY_ZSH/custom/plugins/zsh-completions/zsh-completions.plugin.zsh"
+source "$OH_MY_ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 eval "$(starship init zsh)"
 
