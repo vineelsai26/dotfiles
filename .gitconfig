@@ -22,8 +22,10 @@
 [init]
 	defaultBranch = main
 [credential "https://github.com"]
-	helper = !gh auth git-credential
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = !gh auth git-credential
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
 [pull]
 	rebase = true

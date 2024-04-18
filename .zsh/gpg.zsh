@@ -1,4 +1,4 @@
 export GPG_TTY=$(tty)
 
-eval "$(ssh-agent -s)"
+eval "$(ssh-agent -s)" > /dev/null
 

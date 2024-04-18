@@ -7,7 +7,7 @@ end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 require("lazy").setup({
-	install = { colorscheme = { "tokyonight", "habamax" } },
+	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 	-- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 
