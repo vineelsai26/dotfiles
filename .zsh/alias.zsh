@@ -4,14 +4,9 @@ alias vim='nvim'
 alias df='df -h'
 alias du='du -h'
 
-if ! command -v eza &> /dev/null; then
-  alias ls='ls'
-else
-  alias ls='eza --icons --group-directories-first'
-fi
-
-alias ll='ls -alF'
-alias l='ls -F'
+alias ls='eza --icons --group-directories-first'
+alias ll='eza --icons --group-directories-first -alF'
+alias l='eza --icons --group-directories-first -F'
 
 if ! command -v trash &> /dev/null; then
   echo "Trah CLI is not present deleting permently"

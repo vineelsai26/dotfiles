@@ -1,7 +1,3 @@
-source "$HOME/.zsh/path.zsh"
-source "$HOME/.zsh/alias.zsh"
-source "$HOME/.zsh/gpg.zsh"
-
 export OH_MY_ZSH="$HOME/.zsh/ohmyzsh"
 source "$OH_MY_ZSH/oh-my-zsh.sh"
 
@@ -15,6 +11,14 @@ if command -v brew &> /dev/null; then
     source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
-#VMN
+source "$HOME/.zsh/alias.zsh"
+source "$HOME/.zsh/path.zsh"
+source "$HOME/.zsh/gpg.zsh"
+source "$HOME/.zsh/fzf.zsh"
+
+# VMN
 eval "`vmn env`"
+
+# Zoxide
+eval "$(zoxide init --cmd cd zsh)"
 
