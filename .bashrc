@@ -4,6 +4,6 @@ source "$HOME/.zsh/gpg.zsh"
 
 eval "$(starship init bash)"
 
-#VMN
-eval `vmn env`
+#VMN 
+eval "`vmn env`"
 

@@ -2,6 +2,12 @@
 	editor = vim
 	autocrlf = input
 	eol = lf
+	pager = delta
+[delta]
+	navigate = true
+	side-by-side = true
+[diff]
+	colorMoved = default
 [commit]
 	gpgsign = true
 [user]
@@ -12,8 +18,6 @@
 	gpgSign = true
 [gpg]
 	program = gpg
-[push]
-	autoSetupRemote = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -23,9 +27,13 @@
 	defaultBranch = main
 [credential "https://github.com"]
 	helper = 
-	helper = !/usr/bin/gh auth git-credential
+	helper = !gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = 
-	helper = !/usr/bin/gh auth git-credential
+	helper = !gh auth git-credential
 [pull]
-	rebase = true
+	rebase = false
+	ff = true
+[push]
+	default = current
+
