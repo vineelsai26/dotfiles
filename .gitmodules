@@ -1,12 +1,10 @@
-[submodule ".oh-my-zsh"]
-	path = .oh-my-zsh
-	url = https://github.com/ohmyzsh/ohmyzsh
-[submodule ".tmux"]
-	path = .tmux
-	url = https://github.com/gpakosz/.tmux
+[submodule ".tmux/plugins/tpm"]
+	path = .tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
 [submodule ".oh-my-bash"]
 	path = .oh-my-bash
 	url = https://github.com/ohmybash/oh-my-bash
 [submodule ".zsh/ohmyzsh"]
 	path = .zsh/ohmyzsh
 	url = https://github.com/ohmyzsh/ohmyzsh
+
