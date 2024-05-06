@@ -22,3 +22,5 @@ eval "`vmn env`"
 # Zoxide
 eval "$(zoxide init --cmd cd zsh)"
 
+neofetch
+

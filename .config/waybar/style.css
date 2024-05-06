@@ -25,20 +25,20 @@ tooltip {
 }
 
 #window {
-	margin: 5px 5px 2px 5px;
-	padding-left: 10px;
-	padding-right: 7px;
-	border-radius: 7px;
-	border-bottom: 2px solid @bg;
-	border-right: 2px solid @bg;
-	background-color: @yellow;
-	color: @bg;
+  margin: 5px 5px 2px 5px;
+  padding-left: 10px;
+  padding-right: 7px;
+  border-radius: 7px;
+  border-bottom: 2px solid @bg;
+  border-right: 2px solid @bg;
+  background-color: @yellow;
+  color: @bg;
 }
 
 window#waybar.empty #window {
-	background-color: transparent;
-	border-bottom: none;
-	border-right: none;
+  background-color: transparent;
+  border-bottom: none;
+  border-right: none;
 }
 
 window#waybar {
@@ -48,8 +48,8 @@ window#waybar {
 
 /* Workspaces */
 @keyframes button_activate {
-	from { opacity: .3 }
-	to { opacity: 1.; }
+  from { opacity: .3 }
+  to { opacity: 1.; }
 }
 
 #workspaces {
@@ -70,12 +70,12 @@ window#waybar {
 }
 
 #workspaces button.active {
-    background-color:@yellow;
-    color: @bg;
+  background-color:@yellow;
+  color: @bg;
 }
 
 #workspaces button.urgent {
-	color: #F38BA8;
+  color: #F38BA8;
   background-color: @bg-hover;
 }
 
@@ -129,8 +129,8 @@ window#waybar {
 }
 
 #custom-cliphist {
-	color: @peach;
-	margin: 5px 5px 2px 5px;
+  color: @peach;
+  margin: 5px 5px 2px 5px;
   padding-left: 10px;
   padding-right: 12px;
   border-radius: 7px;
@@ -175,26 +175,26 @@ window#waybar {
 
 #battery,
 #bluetooth {
-	margin-left: 0px;
-	margin-right: 5px;
-	padding-left: 7.5px;
-	padding-right: 10px;
-	border-top-left-radius: 0px;
-	border-bottom-left-radius: 0px;
-	border-top-right-radius: 7px;
-	border-bottom-right-radius: 7px;
+  margin-left: 0px;
+  margin-right: 5px;
+  padding-left: 7.5px;
+  padding-right: 10px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
 }
 
 #backlight,
 #pulseaudio {
-	margin-right: 0px;
-	margin-left: 5px;
-	padding-left: 10px;
+  margin-right: 0px;
+  margin-left: 5px;
+  padding-left: 10px;
   padding-right: 7.5px;
-	border-top-right-radius: 0px;
-	border-bottom-right-radius: 0px;
-	border-top-left-radius: 7px;
-	border-bottom-left-radius: 7px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
 }
 
 #clock {

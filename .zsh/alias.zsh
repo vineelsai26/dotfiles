@@ -27,6 +27,8 @@ else
     alias cat='bat'
 fi
 
+alias neofetch='fastfetch'
+
 if [ -f /etc/os-release ]; then
     # freedesktop.org and systemd
     . /etc/os-release
