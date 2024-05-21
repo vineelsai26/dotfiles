@@ -1,9 +1,8 @@
 export OH_MY_ZSH="$HOME/.zsh/ohmyzsh"
-source "$OH_MY_ZSH/oh-my-zsh.sh"
 
-source "$OH_MY_ZSH/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "$OH_MY_ZSH/custom/plugins/zsh-completions/zsh-completions.plugin.zsh"
-source "$OH_MY_ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+plugins=(git gh pip sudo fzf archlinux macos cp zsh-autosuggestions zsh-completions zsh-syntax-highlighting zsh-history-substring-search)
+
+source "$OH_MY_ZSH/oh-my-zsh.sh"
 
 eval "$(starship init zsh)"
 
@@ -22,5 +21,5 @@ eval "`vmn env`"
 # Zoxide
 eval "$(zoxide init --cmd cd zsh)"
 
-neofetch
+fastfetch
 
