@@ -7,8 +7,8 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "vim_mode": true,
-  "theme": "Andromeda",
+  "vim_mode": false,
+  "theme": "Catppuccin Mocha",
   "base_keymap": "VSCode",
   "ui_font_size": 15,
   "buffer_font_size": 15,
