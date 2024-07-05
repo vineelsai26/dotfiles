@@ -6,10 +6,6 @@ source "$OH_MY_ZSH/oh-my-zsh.sh"
 
 eval "$(starship init zsh)"
 
-if command -v brew &> /dev/null; then
-    source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
-
 source "$HOME/.zsh/alias.zsh"
 source "$HOME/.zsh/path.zsh"
 source "$HOME/.zsh/gpg.zsh"
@@ -17,6 +13,7 @@ source "$HOME/.zsh/fzf.zsh"
 
 # VMN
 eval "`vmn env`"
+eval "`vmp env`"
 
 # Zoxide
 eval "$(zoxide init --cmd cd zsh)"
