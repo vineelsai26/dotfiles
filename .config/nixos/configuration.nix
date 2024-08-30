@@ -11,36 +11,58 @@
     ];
 
   # Bootloader.
-  #boot = {
-  #  loader = {
-  #    efi = {
-  #      canTouchEfiVariables = true;
-  #      efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
-  #    };
-  #    grub = {
-  #      efiSupport = true;
-  #      device = "nodev";
-  #      useOSProber = true;
-  #      theme = pkgs.stdenv.mkDerivation {
-  #        pname = "distro-grub-themes";
-  #        version = "3.2";
-  #        src = pkgs.fetchFromGitHub {
-  #          owner = "AdisonCavani";
-  #          repo = "distro-grub-themes";
-  #          rev = "v3.2";
-  #          hash = "sha256-ZcoGbbOMDDwjLhsvs77C7G7vINQnprdfI37a9ccrmPs=";
-  #        };
-  #        installPhase = "cp -r customize/nixos $out";
-  #      };
-  #    };
-  #  };
+  boot = {
+    loader = {
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
+      };
+      grub = {
+        efiSupport = true;
+        device = "nodev";
+        useOSProber = true;
+        theme = pkgs.stdenv.mkDerivation {
+          pname = "distro-grub-themes";
+          version = "3.1";
+          src = pkgs.fetchFromGitHub {
+            owner = "AdisonCavani";
+            repo = "distro-grub-themes";
+            rev = "v3.1";
+            hash = "sha256-ZcoGbbOMDDwjLhsvs77C7G7vINQnprdfI37a9ccrmPs=";
+          };
+          installPhase = "cp -r customize/nixos $out";
+        };
+      };
+    };
 
-  #  extraModprobeConfig = "options kvm_amd nested=1";
-  #};
+    initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
+    initrd.kernelModules = [ ];
+    kernelParams = [
+      "amd_iommu=on"
+      "pcie_acs_override=downstream,multifunction"
+    ];
+    kernelModules = [ "kvm-amd" "vfio" "vfio_iommu_type1" "vfio_pci" "vfio_virqfd" ];
+    extraModulePackages = [ ];
+    extraModprobeConfig = "options vfio-pci ids=03:00.0,03:00.1";
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+    #kernelPackages = pkgs.linuxPackages_latest;
+
+    postBootCommands = ''
+      DEVS="03:00.0 03:00.1"
+
+      for DEV in $DEVS; do
+        echo "vfio-pci" > /sys/bus/pci/devices/$DEV/driver_override
+      done
+      modprobe -i vfio-pci
+    '';
+  };
+
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
 
   # Enable networking
   networking = {
@@ -48,22 +70,21 @@
       enable = true;
       dns = "none";
     };
-    #bridges = {
-    #  vmbr0 = {
-    #    interfaces = [
-    #      #"wlp6s0"
-    #      "enp4s0"
-    #    ];
-    #    rstp = true;
-    #  };
-    #};
+    bridges = {
+      vmbr0 = {
+        interfaces = [
+          "enp4s0"
+        ];
+        rstp = true;
+      };
+    };
     nameservers = [
       "1.1.1.1"
       "1.0.0.1"
       "2606:4700:4700::1111"
       "2606:4700:4700::1001"
     ];
-    #interfaces.vmbr0.useDHCP = true;
+    interfaces.vmbr0.useDHCP = true;
     dhcpcd.extraConfig = "nohook resolv.conf";
     hostName = "nixos";
     firewall = {
@@ -165,6 +186,11 @@
       cpio
       gh
       distrobox
+      fzf
+      zoxide
+      fastfetch
+      unzip
+      pciutils
 
       # fs progs
       ntfs3g
@@ -200,10 +226,10 @@
       # Window Manager Tools
       xdg-desktop-portal-hyprland
       waybar
-      #hypridle
+      hypridle
       hyprpaper
-      #hyprcursor
-      #hyprlock
+      hyprcursor
+      hyprlock
       rofi-wayland
       dunst
       grim
@@ -227,9 +253,9 @@
       packagekit
       networkmanagerapplet
       pavucontrol
-      #bitwarden-desktop
+      bitwarden-desktop
       bitwarden-cli
-      #pinentry-all
+      pinentry-all
       tailscale
       cockpit
       playerctl
@@ -273,14 +299,13 @@
 
   # Configure keymap in X11
   services = {
+    libinput.enable = true;
     xserver = {
       enable = true;
       xkb = {
         variant = "";
         layout = "us";
       };
-
-      libinput.enable = true;
 
       # Enable gdm and wayland
       displayManager.gdm = {
@@ -438,9 +463,9 @@
         };
         swtpm.enable = true;
       };
-      #allowedBridges = [
-      #  "vmbr0"
-      #];
+      allowedBridges = [
+        "vmbr0"
+      ];
     };
     docker.enable = true;
   };
@@ -459,10 +484,13 @@
         TimeoutStopSec = 10;
       };
     };
+    tmpfiles.rules = [
+      "L+ /bin - - - - /run/current-system/sw/bin/"
+    ];
   };
 
   # NixOS Version
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

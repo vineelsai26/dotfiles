@@ -5,24 +5,31 @@
 
 {
   imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
+    [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "uhci_hcd" "ehci_pci" "ahci" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/159a9528-655d-4e0f-b6ff-fcc01d5d0404";
+    fsType = "btrfs";
+    options = [ "subvol=@" ];
+  };
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/d64364e1-35a8-4303-8558-cb20be6c4071";
-      fsType = "ext4";
-    };
+  fileSystems."/boot/efi" = { 
+    device = "/dev/disk/by-uuid/538E-EDF8";
+    fsType = "vfat";
+    options = [ "fmask=0022" "dmask=0022" ];
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/E9B9-2CA5";
-      fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
-    };
+  fileSystems."/home" = { 
+    device = "/dev/disk/by-uuid/98d8d58a-c443-441b-93c3-1dc8f7e733d8";
+    fsType = "btrfs";
+  };
+
+  fileSystems."/home/vineel/alpha" = {
+    device = "10.0.10.5:/home/vineel/data";
+    fsType = "nfs";
+    options = [ "x-systemd.automount" "noauto" ];
+  };
 
   swapDevices = [ ];
 
@@ -31,7 +38,11 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp6s18.useDHCP = lib.mkDefault true;
+  # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp3s0f1.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp4s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp6s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
