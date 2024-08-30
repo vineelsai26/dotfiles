@@ -11,13 +11,14 @@
 [commit]
 	gpgsign = true
 [user]
-	signingkey = 4431E64723B4ADDE
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILFxoOyDEW620PrgX1atOr0N5+35im37nko3KcY+odPq
 	email = mail@vineelsai.com
 	name = Vineel Sai
 [tag]
 	gpgSign = true
 [gpg]
 	program = gpg
+	format = ssh
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -27,10 +28,10 @@
 	defaultBranch = main
 [credential "https://github.com"]
 	helper = 
-	helper = !/usr/bin/gh auth git-credential
+	helper = !/opt/homebrew/bin/gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = 
-	helper = !/usr/bin/gh auth git-credential
+	helper = !/opt/homebrew/bin/gh auth git-credential
 [pull]
 	rebase = false
 	ff = true
@@ -39,3 +40,5 @@
 
 [safe]
 	directory = /home/build/repo/build/neovim
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign

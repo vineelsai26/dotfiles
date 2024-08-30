@@ -18,5 +18,3 @@ eval "`vmp env`"
 # Zoxide
 eval "$(zoxide init --cmd cd zsh)"
 
-fastfetch
-

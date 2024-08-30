@@ -7,11 +7,18 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "features": {
+    "inline_completion_provider": "supermaven"
+  },
   "vim_mode": false,
   "theme": "Catppuccin Mocha",
   "base_keymap": "VSCode",
   "ui_font_size": 15,
   "buffer_font_size": 15,
   "autosave": "on_focus_change",
-  "format_on_save": "on"
+  "format_on_save": "on",
+  "ui_font_family": "CaskaydiaCove Nerd Font Mono",
+  "terminal": {
+    "font_family": "CaskaydiaCove Nerd Font Mono"
+  }
 }

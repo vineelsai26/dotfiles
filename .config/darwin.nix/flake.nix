@@ -19,7 +19,7 @@
           pkgs.awscli2
           pkgs.ansible
           pkgs.ansible-lint
-          pkgs.aws-sam-cli
+         # pkgs.aws-sam-cli
           pkgs.pre-commit
           pkgs.pipx
           pkgs.eza
@@ -27,6 +27,34 @@
           pkgs.zoxide
           pkgs.starship
           pkgs.localsend
+          pkgs.iterm2
+          # pkgs.bash
+          pkgs.zsh
+          pkgs.bun
+          pkgs.btop
+          pkgs.bat
+          pkgs.gh
+          pkgs.go
+          pkgs.lazygit
+          pkgs.nano
+          pkgs.rsync
+          pkgs.rclone
+          pkgs.ripgrep
+          pkgs.rustup
+          pkgs.vacuum-go
+          pkgs.turso-cli
+          pkgs.tmux
+          pkgs.zellij
+          pkgs.lua
+          pkgs.nmap
+          pkgs.ollama
+          pkgs.git-lfs
+          pkgs.htop
+          pkgs.jq
+          pkgs.flyctl
+          pkgs.zig
+          pkgs.kubectl
+          pkgs.discord
         ];
 
       # Auto upgrade nix package and the daemon service.
@@ -42,6 +70,7 @@
  
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
+      nixpkgs.config.allowUnfree = true;
 
       security.pam.enableSudoTouchIdAuth = true;
 
