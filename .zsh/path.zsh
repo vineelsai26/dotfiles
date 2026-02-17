@@ -77,3 +77,6 @@ if [[ -d "$HOME/.sst/bin" ]]; then
     export PATH="$HOME/.sst/bin:$PATH"
 fi
 
+if [[ -d "/usr/lib/jvm/java-17-temurin-jdk" ]]; then
+    export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
+fi

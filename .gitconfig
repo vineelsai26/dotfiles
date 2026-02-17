@@ -41,4 +41,4 @@
 [safe]
 	directory = /home/build/repo/build/neovim
 [gpg "ssh"]
-	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+	program = /opt/1Password/op-ssh-sign

@@ -11,10 +11,13 @@ source "$HOME/.zsh/path.zsh"
 source "$HOME/.zsh/gpg.zsh"
 source "$HOME/.zsh/fzf.zsh"
 
-# VMN
-eval "`vmn env`"
-eval "`vmp env`"
-
 # Zoxide
 eval "$(zoxide init --cmd cd zsh)"
+
+eval "$(kubectl completion zsh)"
+eval "$(argocd completion zsh)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
