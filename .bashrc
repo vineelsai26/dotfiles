@@ -8,3 +8,5 @@ eval "$(starship init bash)"
 eval "`vmn env`"
 
 . "$HOME/.cargo/env"
+
+. "$HOME/.local/bin/env"

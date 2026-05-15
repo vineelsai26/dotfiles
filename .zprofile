@@ -7,3 +7,6 @@ fi
 # Added by Toolbox App
 export PATH="$PATH:/Users/vineel/Library/Application Support/JetBrains/Toolbox/scripts"
 
+
+# Hermes Agent — ensure ~/.local/bin is on PATH
+export PATH="$HOME/.local/bin:$PATH"

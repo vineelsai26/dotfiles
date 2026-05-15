@@ -83,6 +83,63 @@ window#waybar {
   border: solid transparent;
 }
 
+/* Temporary Hyprland 0.55 workspace-click workaround modules */
+#custom-ws1,
+#custom-ws2,
+#custom-ws3,
+#custom-ws4,
+#custom-ws5,
+#custom-ws6,
+#custom-ws7,
+#custom-ws8,
+#custom-ws9,
+#custom-ws10 {
+  margin: 0 2px;
+  border-radius: 5px;
+  padding-left: 8px;
+  padding-right: 8px;
+  background-color: @bg;
+  color: @fg;
+}
+
+#workspaces {
+  margin: 5px 5px 2px 5px;
+  border-radius: 7px;
+  padding: 4px 6px;
+  background-color: @bg;
+  color: @bg;
+}
+
+#custom-ws1.active,
+#custom-ws2.active,
+#custom-ws3.active,
+#custom-ws4.active,
+#custom-ws5.active,
+#custom-ws6.active,
+#custom-ws7.active,
+#custom-ws8.active,
+#custom-ws9.active,
+#custom-ws10.active {
+  background-color: @yellow;
+  color: @bg;
+}
+
+#custom-ws1.hidden,
+#custom-ws2.hidden,
+#custom-ws3.hidden,
+#custom-ws4.hidden,
+#custom-ws5.hidden,
+#custom-ws6.hidden,
+#custom-ws7.hidden,
+#custom-ws8.hidden,
+#custom-ws9.hidden,
+#custom-ws10.hidden {
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  font-size: 0;
+}
+
 #custom-gpu-util {
   margin: 5px 5px 2px 5px;
   padding-left: 10px;
@@ -214,4 +271,3 @@ window#waybar {
   background-color: @bg;
   color: @peach;
 }
-

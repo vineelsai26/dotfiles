@@ -2,7 +2,7 @@
   "layer": "top",
   "height": 35,
   "modules-left": [
-    "hyprland/workspaces",
+    "group/workspaces",
     "custom/playerctl",
     "hyprland/window"
   ],
@@ -106,6 +106,7 @@
       "google-chrome": "",
       "firefox": "",
       "kitty": "",
+      "ghostty": "",
       "alacritty": "",
       "code": "󰨞",
       "nautilus": "",
@@ -125,6 +126,101 @@
       "chrome-faolnafnngnfdaknnbpnkhgohbobgegn-Profile_2": "󰇮",
       "chrome-bgdbmehlmdmddlgneophbcddadgknlpm-Profile_2": ""
     }
+  },
+  "custom/ws1": {
+    "exec": "/home/vineel/.config/waybar/scripts/hypr-workspace 1",
+    "return-type": "json",
+    "format": "{text}",
+    "interval": 1,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 1 })'",
+    "tooltip": false
+  },
+  "custom/ws2": {
+    "exec": "/home/vineel/.config/waybar/scripts/hypr-workspace 2",
+    "return-type": "json",
+    "format": "{text}",
+    "interval": 1,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 2 })'",
+    "tooltip": false
+  },
+  "custom/ws3": {
+    "exec": "/home/vineel/.config/waybar/scripts/hypr-workspace 3",
+    "return-type": "json",
+    "format": "{text}",
+    "interval": 1,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 3 })'",
+    "tooltip": false
+  },
+  "custom/ws4": {
+    "exec": "/home/vineel/.config/waybar/scripts/hypr-workspace 4",
+    "return-type": "json",
+    "format": "{text}",
+    "interval": 1,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 4 })'",
+    "tooltip": false
+  },
+  "custom/ws5": {
+    "exec": "/home/vineel/.config/waybar/scripts/hypr-workspace 5",
+    "return-type": "json",
+    "format": "{text}",
+    "interval": 1,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 5 })'",
+    "tooltip": false
+  },
+  "custom/ws6": {
+    "exec": "/home/vineel/.config/waybar/scripts/hypr-workspace 6",
+    "return-type": "json",
+    "format": "{text}",
+    "interval": 1,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 6 })'",
+    "tooltip": false
+  },
+  "custom/ws7": {
+    "exec": "/home/vineel/.config/waybar/scripts/hypr-workspace 7",
+    "return-type": "json",
+    "format": "{text}",
+    "interval": 1,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 7 })'",
+    "tooltip": false
+  },
+  "custom/ws8": {
+    "exec": "/home/vineel/.config/waybar/scripts/hypr-workspace 8",
+    "return-type": "json",
+    "format": "{text}",
+    "interval": 1,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 8 })'",
+    "tooltip": false
+  },
+  "custom/ws9": {
+    "exec": "/home/vineel/.config/waybar/scripts/hypr-workspace 9",
+    "return-type": "json",
+    "format": "{text}",
+    "interval": 1,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 9 })'",
+    "tooltip": false
+  },
+  "custom/ws10": {
+    "exec": "/home/vineel/.config/waybar/scripts/hypr-workspace 10",
+    "return-type": "json",
+    "format": "{text}",
+    "interval": 1,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 10 })'",
+    "tooltip": false
+  },
+  "group/workspaces": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/ws1",
+      "custom/ws2",
+      "custom/ws3",
+      "custom/ws4",
+      "custom/ws5",
+      "custom/ws6",
+      "custom/ws7",
+      "custom/ws8",
+      "custom/ws9",
+      "custom/ws10"
+    ]
   },
   "battery": {
     "format": "<span>{icon}</span> {capacity}%",
