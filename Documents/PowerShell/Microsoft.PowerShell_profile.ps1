@@ -1,5 +1,8 @@
 # Import Terminal Icons
-Import-Module -Name Terminal-Icons
+try {
+    Import-Module -Name Terminal-Icons -ErrorAction Stop
+} catch {
+}
 
 # Find out if the current user identity is elevated (has admin rights)
 $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
@@ -141,8 +144,16 @@ function pgrep($name) {
     Get-Process $name
 }
 
+function dotfiles {
+    git --git-dir="$HOME\.cfg" --work-tree="$HOME" @args
+}
+
 $ENV:STARSHIP_CONFIG = "$HOME\Documents\Starship\config.toml"
 $ENV:STARSHIP_DISTRO = "者 "
-Invoke-Expression (&starship init powershell)
+if (Get-Command starship -ErrorAction SilentlyContinue) {
+    Invoke-Expression (&starship init powershell)
+}
 
-vmn env | Out-String | Invoke-Expression
+if (Get-Command vmn -ErrorAction SilentlyContinue) {
+    vmn env | Out-String | Invoke-Expression
+}
