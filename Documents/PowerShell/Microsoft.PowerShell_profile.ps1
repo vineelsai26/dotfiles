@@ -1,21 +1,24 @@
 # Import Terminal Icons
-try {
-    Import-Module -Name Terminal-Icons -ErrorAction Stop
-} catch {
-}
+Import-Module -Name Terminal-Icons
+
+# Accept next word from predictive IntelliSense suggestion
+Set-PSReadLineKeyHandler -Chord "Ctrl+RightArrow" -Function ForwardWord
+Set-PSReadLineKeyHandler -Chord "Alt+RightArrow" -Function ForwardWord
+Set-PSReadLineKeyHandler -Chord "Ctrl+LeftArrow" -Function BackwardWord
+Set-PSReadLineKeyHandler -Chord "Alt+LeftArrow" -Function BackwardWord
 
 # Find out if the current user identity is elevated (has admin rights)
 $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
 $principal = New-Object Security.Principal.WindowsPrincipal $identity
 $isAdmin = $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 
-# If so and the current host is a command line, then change to red color 
+# If so and the current host is a command line, then change to red color
 # as warning to user that they are operating in an elevated context
 # Useful shortcuts for traversing directories
 function cd... { Set-Location ..\.. }
 function cd.... { Set-Location ..\..\.. }
 
-# Compute file hashes - useful for checking successful downloads 
+# Compute file hashes - useful for checking successful downloads
 function md5 { Get-FileHash -Algorithm MD5 $args }
 function sha1 { Get-FileHash -Algorithm SHA1 $args }
 function sha256 { Get-FileHash -Algorithm SHA256 $args }
@@ -24,7 +27,7 @@ function sha256 { Get-FileHash -Algorithm SHA256 $args }
 function n { notepad $args }
 
 # Quick shortcut to start vscode
-function c { 
+function c {
     if ($args.Count -gt 0) {
         code $args
     }
@@ -59,11 +62,11 @@ function dirs {
     }
 }
 
-# Simple function to start a new elevated process. If arguments are supplied then 
+# Simple function to start a new elevated process. If arguments are supplied then
 # a single command is started with admin rights; if not then a new admin instance
 # of PowerShell is started.
 function admin {
-    if ($args.Count -gt 0) {   
+    if ($args.Count -gt 0) {
         $argList = "& '" + $args + "'"
         Start-Process powershell -Verb runAs -ArgumentList $argList
     }
@@ -73,7 +76,7 @@ function admin {
 }
 
 # Set UNIX-like aliases for the admin command, so sudo <command> will run the command
-# with elevated rights. 
+# with elevated rights.
 Set-Alias -Name sudo -Value admin
 
 # Make it easy to edit this profile once it's installed
@@ -86,8 +89,8 @@ function Edit-Profile {
     }
 }
 
-# We don't need these any more; they were just temporary variables to get to $isAdmin. 
-# Delete them to prevent cluttering up the user profile. 
+# We don't need these any more; they were just temporary variables to get to $isAdmin.
+# Delete them to prevent cluttering up the user profile.
 Remove-Variable identity
 Remove-Variable principal
 
@@ -144,16 +147,10 @@ function pgrep($name) {
     Get-Process $name
 }
 
-function dotfiles {
-    git --git-dir="$HOME\.cfg" --work-tree="$HOME" @args
-}
+oh-my-posh init pwsh | Invoke-Expression
 
 $ENV:STARSHIP_CONFIG = "$HOME\Documents\Starship\config.toml"
-$ENV:STARSHIP_DISTRO = "者 "
-if (Get-Command starship -ErrorAction SilentlyContinue) {
-    Invoke-Expression (&starship init powershell)
-}
+$ENV:STARSHIP_DISTRO = "🪟 "
+Invoke-Expression (&starship init powershell)
 
-if (Get-Command vmn -ErrorAction SilentlyContinue) {
-    vmn env | Out-String | Invoke-Expression
-}
+Import-Module -Name Microsoft.WinGet.CommandNotFound
