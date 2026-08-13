@@ -1,4 +1,3 @@
-alias apt='nala'
 alias sudo='sudo '
 alias vim='nvim'
 alias df='df -h'

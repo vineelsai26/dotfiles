@@ -1,101 +1,66 @@
 {
-  description = "Example Darwin system flake";
+  description = "Vineel's nix-darwin configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-darwin.url = "github:LnL7/nix-darwin";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-26.05-darwin";
+
+    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ self, nix-darwin, nixpkgs }:
-  let
-    configuration = { pkgs, ... }: {
-      # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
-      environment.systemPackages =
-        [
-          pkgs.neovim
-          pkgs.fastfetch
-          pkgs.awscli2
-          pkgs.ansible
-          pkgs.ansible-lint
-         # pkgs.aws-sam-cli
-          pkgs.pre-commit
-          pkgs.pipx
-          pkgs.eza
-          pkgs.fzf
-          pkgs.zoxide
-          pkgs.starship
-          pkgs.localsend
-          pkgs.iterm2
-          # pkgs.bash
-          pkgs.zsh
-          pkgs.bun
-          pkgs.btop
-          pkgs.bat
-          pkgs.gh
-          pkgs.go
-          pkgs.lazygit
-          pkgs.nano
-          pkgs.rsync
-          pkgs.rclone
-          pkgs.ripgrep
-          pkgs.rustup
-          pkgs.vacuum-go
-          pkgs.turso-cli
-          pkgs.tmux
-          pkgs.zellij
-          pkgs.lua
-          pkgs.nmap
-          pkgs.ollama
-          pkgs.git-lfs
-          pkgs.htop
-          pkgs.jq
-          pkgs.flyctl
-          pkgs.zig
-          pkgs.kubectl
-          pkgs.discord
-        ];
+    let
+      configuration = { ... }: {
+        imports = [ ./homebrew.nix ];
 
-      # Auto upgrade nix package and the daemon service.
-      services.nix-daemon.enable = true;
-      # nix.package = pkgs.nix;
+        # Nix manages macOS and Homebrew policy. Packages and applications are
+        # installed by Homebrew in homebrew.nix, not into the Nix system profile.
+        environment.systemPackages = [ ];
 
-      # Necessary for using flakes on this system.
-      nix.settings.experimental-features = "nix-command flakes";
+        nix.settings = {
+          experimental-features = [ "nix-command" "flakes" ];
+          sandbox = true;
+        };
+        nixpkgs.hostPlatform = "aarch64-darwin";
 
-      # Create /etc/zshrc that loads the nix-darwin environment.
-      programs.zsh.enable = true;  # default shell on catalina
-      # programs.fish.enable = true;
- 
-      # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = "aarch64-darwin";
-      nixpkgs.config.allowUnfree = true;
+        nix.gc = {
+          automatic = true;
+          options = "--delete-older-than 30d";
+        };
 
-      security.pam.enableSudoTouchIdAuth = true;
+        programs.zsh.enable = true;
+        security.pam.services.sudo_local.touchIdAuth = true;
 
-      system = {
-        configurationRevision = self.rev or self.dirtyRev or null;
-        stateVersion = 4;
-        defaults = {
-          dock.autohide = true;
-          dock.mru-spaces = false;
-          finder.AppleShowAllExtensions = true;
-          finder.FXPreferredViewStyle = "clmv";
-          screencapture.location = "~/Pictures/screenshots";
-          screensaver.askForPasswordDelay = 10;
+        system = {
+          primaryUser = "vineel";
+          configurationRevision = self.rev or self.dirtyRev or null;
+
+          # Latest compatibility version supported by nix-darwin 26.05.
+          stateVersion = 7;
+
+          activationScripts.postActivation.text = ''
+            screenshot_dir="/Users/vineel/Pictures/Screenshots"
+            if [ ! -d "$screenshot_dir" ]; then
+              /usr/bin/install -d -m 0755 -o vineel -g staff "$screenshot_dir"
+            fi
+          '';
+
+          defaults = {
+            dock.autohide = true;
+            dock.mru-spaces = false;
+            finder.AppleShowAllExtensions = true;
+            finder.FXPreferredViewStyle = "clmv";
+            screencapture.location = "/Users/vineel/Pictures/screenshots";
+            screensaver.askForPasswordDelay = 10;
+          };
         };
       };
-    };
-  in
-  {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#simple
-    darwinConfigurations."Vineels-MacBook-Air" = nix-darwin.lib.darwinSystem {
-      modules = [ configuration ];
-    };
+    in
+    {
+      darwinConfigurations."Vineels-MacBook-Air" = nix-darwin.lib.darwinSystem {
+        modules = [ configuration ];
+      };
 
-    # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."Vineels-MacBook-Air".pkgs;
-  };
+      darwinPackages = self.darwinConfigurations."Vineels-MacBook-Air".pkgs;
+    };
 }
