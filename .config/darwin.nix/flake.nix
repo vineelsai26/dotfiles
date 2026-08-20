@@ -46,11 +46,122 @@
           '';
 
           defaults = {
-            dock.autohide = true;
-            dock.mru-spaces = false;
-            finder.AppleShowAllExtensions = true;
-            finder.FXPreferredViewStyle = "clmv";
-            screencapture.location = "/Users/vineel/Pictures/screenshots";
+            NSGlobalDomain = {
+              AppleInterfaceStyle = "Dark";
+              AppleShowAllExtensions = true;
+              NSAutomaticCapitalizationEnabled = true;
+              NSAutomaticPeriodSubstitutionEnabled = true;
+              "com.apple.springing.delay" = 0.5;
+              "com.apple.springing.enabled" = true;
+              "com.apple.trackpad.forceClick" = true;
+            };
+
+            dock = {
+              autohide = true;
+              autohide-delay = 0.0;
+              expose-group-apps = true;
+              largesize = 70;
+              magnification = true;
+              minimize-to-application = true;
+              mru-spaces = false;
+              persistent-apps = [
+                "/System/Applications/Apps.app"
+                "/System/Applications/App Store.app"
+                "/System/Applications/Mail.app"
+                "/Applications/Obsidian.app"
+                "/System/Applications/Reminders.app"
+                "/Applications/Google Chrome.app"
+                "/Applications/Visual Studio Code.app"
+                "/Applications/T3 Code (Nightly).app"
+                "/Applications/ChatGPT.app"
+                "/Applications/Ghostty.app"
+                "/System/Applications/iPhone Mirroring.app"
+                "/System/Applications/Siri AI.app"
+                "/System/Applications/System Settings.app"
+              ];
+              persistent-others = [
+                {
+                  folder = {
+                    path = "/Users/vineel/Downloads";
+                    arrangement = "date-added";
+                    displayas = "stack";
+                    showas = "fan";
+                  };
+                }
+              ];
+              show-recents = false;
+              wvous-br-corner = 1;
+            };
+
+            finder = {
+              AppleShowAllExtensions = true;
+              FXDefaultSearchScope = "SCcf";
+              FXPreferredViewStyle = "Nlsv";
+              FXRemoveOldTrashItems = true;
+              NewWindowTarget = "Home";
+              ShowExternalHardDrivesOnDesktop = true;
+              ShowHardDrivesOnDesktop = false;
+              ShowMountedServersOnDesktop = true;
+              ShowPathbar = true;
+              ShowRemovableMediaOnDesktop = false;
+            };
+
+            trackpad = {
+              ActuateDetents = true;
+              Clicking = true;
+              DragLock = false;
+              Dragging = false;
+              FirstClickThreshold = 1;
+              ForceSuppressed = false;
+              SecondClickThreshold = 1;
+              TrackpadCornerSecondaryClick = 0;
+              TrackpadFourFingerHorizSwipeGesture = 2;
+              TrackpadFourFingerPinchGesture = 2;
+              TrackpadFourFingerVertSwipeGesture = 2;
+              TrackpadMomentumScroll = true;
+              TrackpadPinch = true;
+              TrackpadRightClick = true;
+              TrackpadRotate = true;
+              TrackpadThreeFingerDrag = false;
+              TrackpadThreeFingerHorizSwipeGesture = 2;
+              TrackpadThreeFingerTapGesture = 0;
+              TrackpadThreeFingerVertSwipeGesture = 2;
+              TrackpadTwoFingerDoubleTapGesture = true;
+              TrackpadTwoFingerFromRightEdgeSwipeGesture = 3;
+            };
+
+            WindowManager = {
+              AppWindowGroupingBehavior = true;
+              AutoHide = false;
+              EnableTiledWindowMargins = false;
+              GloballyEnabled = false;
+              HideDesktop = true;
+              StageManagerHideWidgets = false;
+              StandardHideWidgets = false;
+            };
+
+            ActivityMonitor = {
+              OpenMainWindow = true;
+              ShowCategory = 100;
+            };
+
+            CustomUserPreferences.NSGlobalDomain = {
+              AppleLanguages = [ "en-IN" ];
+              AppleLocale = "en_IN";
+              AppleMiniaturizeOnDoubleClick = 0;
+            };
+
+            SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
+            controlcenter.BatteryShowPercentage = true;
+            iCal.CalendarSidebarShown = false;
+            loginwindow.GuestEnabled = false;
+            magicmouse.MouseButtonMode = "OneButton";
+            menuExtraClock = {
+              ShowAMPM = true;
+              ShowDate = 0;
+              ShowDayOfWeek = true;
+            };
+            screencapture.location = "/Users/vineel/Pictures/Screenshots";
             screensaver.askForPasswordDelay = 10;
           };
         };

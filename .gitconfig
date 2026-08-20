@@ -42,3 +42,4 @@
 	directory = /home/build/repo/build/neovim
 [gpg "ssh"]
 	program = /Users/vineel/Library/Application Support/Keygate/ssh-sign
+	allowedSignersFile = /Users/vineel/.config/git/allowed_signers
